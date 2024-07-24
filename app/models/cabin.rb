@@ -1,4 +1,6 @@
 class Cabin < ApplicationRecord
+  # self.primary_key = 'uuid'
+
   validates :maxCapacity, presence: true
   validates :regularPrice, presence: true
   validates :name, presence: true,  uniqueness: true
