@@ -1,24 +1,74 @@
-# README
+# My Luxury Hotel Project
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This project is a luxury hotel management system built with a Rails API backend and a Vue.js frontend. The frontend code is located in the `/client` directory of the Rails repository.
 
-Things you may want to cover:
+## Table of Contents
 
-* Ruby version
+- [Prerequisites](#prerequisites)
+- [Installation](#installation)
+- [Backend Setup](#backend-setup)
+- [Frontend Setup](#frontend-setup)
+- [Running the Application](#running-the-application)
+- [Project Structure](#project-structure)
+- [Contributing](#contributing)
+- [License](#license)
 
-* System dependencies
+## Prerequisites
 
-* Configuration
+Ensure you have the following installed on your local development environment:
 
-* Database creation
+- [Ruby](https://www.ruby-lang.org/en/documentation/installation/)
+- [Rails](https://guides.rubyonrails.org/getting_started.html)
+- [Node.js and npm](https://nodejs.org/)
+- [PostgreSQL](https://www.postgresql.org/download/)
+- [Foreman](https://github.com/ddollar/foreman#installation)
 
-* Database initialization
+## Installation
 
-* How to run the test suite
+### Backend Setup
 
-* Services (job queues, cache servers, search engines, etc.)
+1. Clone the repository:
 
-* Deployment instructions
+   ```sh
+   git clone https://github.com/boaloysius/heavenly-heights-resort.git
+   cd heavenly-heights-resort
+   ```
 
-* ...
+2. Install backend dependencies:
+
+   ```sh
+   bundle install
+   ```
+
+3. Configure the database:
+
+   Edit the `config/database.yml` file to match your PostgreSQL configuration.
+
+4. Create and migrate the database:
+   ```sh
+   rails db:create
+   rails db:migrate
+   ```
+
+### Frontend Setup
+
+1. Navigate to the `client` directory:
+
+   ```sh
+   cd client
+   ```
+
+2. Install frontend dependencies:
+   ```sh
+   npm install
+   ```
+
+## Running the Application
+
+### Start the servers with Foreman:
+
+From the root directory of the project, run:
+
+```sh
+foreman start
+```
