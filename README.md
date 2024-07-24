@@ -1,4 +1,4 @@
-# My Luxury Hotel Project
+# Heavenly Heights Resort
 
 This project is a luxury hotel management system built with a Rails API backend and a Vue.js frontend. The frontend code is located in the `/client` directory of the Rails repository.
 
