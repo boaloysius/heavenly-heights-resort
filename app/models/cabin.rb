@@ -12,8 +12,10 @@ class Cabin < ApplicationRecord
   private
 
   def discount_less_than_regular_price
-    if discount > regularPrice
-      errors.add(:discount, "must be less than or equal to the regular price")
+    return if regularPrice.nil? || discount.nil?
+
+    if discount >= regularPrice
+      errors.add(:discount, "must be less than the regular price")
     end
-  end  
+  end
 end
