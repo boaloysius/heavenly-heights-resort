@@ -6,17 +6,20 @@ module Api
 
       def index
         @cabins = Cabin.order(created_at: :desc)
-        render json: { data: @cabins }
+        cabins_data = @cabins.map do |cabin|
+          CabinSerializer.new(cabin).serializable_hash[:data][:attributes]
+        end
+        render json: { data: cabins_data }        
       end
 
       def show
-        render json: {data: @cabin}
+        render json: {data: CabinSerializer.new(@cabin).serializable_hash[:data][:attributes]}
       end
 
       def create
         @cabin = Cabin.new(cabin_params)
         if @cabin.save
-          render json: {data: @cabin}, status: :created
+          render json: {data: CabinSerializer.new(@cabin).serializable_hash[:data][:attributes]}, status: :created
         else
           render json: {errors: @cabin.errors}, status: :unprocessable_entity
         end
@@ -24,7 +27,7 @@ module Api
 
       def update
         if @cabin.update(cabin_params)
-          render json: {data: @cabin}
+          render json: {data: CabinSerializer.new(@cabin).serializable_hash[:data][:attributes]}
         else
           render json: {errors: @cabin.errors}, status: :unprocessable_entity
         end
@@ -44,7 +47,7 @@ module Api
       end
 
       def cabin_params
-        params.require(:cabin).permit(:maxCapacity, :regularPrice, :discount, :name, :image, :description)
+        params.require(:cabin).permit(:maxCapacity, :regularPrice, :discount, :name, :description, :imageFile)
       end
     end
   end
