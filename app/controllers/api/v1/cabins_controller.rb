@@ -24,7 +24,7 @@ module Api
 
       def update
         if @cabin.update(cabin_params)
-          render json: {cabin: @cabin}
+          render json: {data: @cabin}
         else
           render json: {errors: @cabin.errors}, status: :unprocessable_entity
         end
