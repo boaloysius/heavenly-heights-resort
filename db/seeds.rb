@@ -11,12 +11,32 @@ require 'faker'
   regular_price = min_price + price_range
   regular_price = [regular_price, max_price].min  # Ensure price does not exceed max_price
 
-  Cabin.create(
+  cabin = Cabin.create(
     maxCapacity: max_capacity,
     regularPrice: regular_price,
     discount: Faker::Number.between(from: 0, to: 50),
     name: format('%03d', i + 1),  # Sequential name with leading zeros
-    image: Faker::LoremFlickr.image(size: "300x300"),
-    description: Faker::Lorem.paragraph(sentence_count: 2)
+    description: Faker::Lorem.paragraph(sentence_count: 2),
   )
+
+  # Attach an image to the cabin
+  cabin.imageFile.attach(
+    io: File.open(Rails.root.join('spec', 'fixtures', 'files', 'sample_cabin_image.jpg')),
+    filename: 'sample_cabin_image.jpg',
+    content_type: 'image/jpeg'
+  )
+
+  # Debug output
+  if cabin.save
+    puts "Created cabin #{cabin.name} with ID #{cabin.id}"
+  else
+    puts "Failed to create cabin #{cabin.name}: #{cabin.errors.full_messages.join(', ')}"
+  end
+
+  # Attach an image to the cabin
+  # cabin.imageFile.attach(
+  #   io: File.open(Rails.root.join('spec', 'fixtures', 'files', 'sample_cabin_image.jpg')),
+  #   filename: 'sample_cabin_image.jpg',
+  #   content_type: 'image/jpeg'
+  # ) if cabin.persisted?
 end

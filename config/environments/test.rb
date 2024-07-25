@@ -1,5 +1,9 @@
 require "active_support/core_ext/integer/time"
 
+Rails.application.routes.default_url_options = {
+  host: 'http://localhost:3000'
+}
+
 # The test environment is used exclusively to run your application's
 # test suite. You never need to work with it otherwise. Remember that
 # your test database is "scratch space" for the test suite and is wiped
@@ -36,6 +40,8 @@ Rails.application.configure do
 
   # Store uploaded files on the local file system in a temporary directory.
   config.active_storage.service = :test
+
+  config.active_job.queue_adapter = :inline
 
   config.action_mailer.perform_caching = false
 

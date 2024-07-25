@@ -7,7 +7,7 @@ RSpec.describe Cabin, type: :model do
       regularPrice: 200,
       discount: 50,
       name: '001',
-      image: 'http://example.com/image.jpg',
+      imageFile: fixture_file_upload('spec/fixtures/files/sample_cabin_image.jpg', 'image/jpeg'),
       description: 'A lovely cabin'
     )
   }
@@ -43,14 +43,14 @@ RSpec.describe Cabin, type: :model do
         regularPrice: 200,
         discount: 50,
         name: '001',
-        image: 'http://example.com/image.jpg',
+        imageFile: fixture_file_upload('spec/fixtures/files/sample_cabin_image.jpg', 'image/jpeg'),
         description: 'A lovely cabin'
       )
       expect(subject).to_not be_valid
     end
 
     it 'is not valid without an image' do
-      subject.image = nil
+      subject.imageFile = nil
       expect(subject).to_not be_valid
     end
 

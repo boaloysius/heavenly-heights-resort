@@ -4,7 +4,14 @@ FactoryBot.define do
     regularPrice { Faker::Number.between(from: 100, to: 3000) }
     discount { Faker::Number.between(from: 0, to: 99) }
     sequence(:name) { |n| "#{n.to_s.rjust(3, '0')}" }
-    image { Faker::LoremFlickr.image(size: "500x500", search_terms: ['luxury', 'hotel']) }
     description { Faker::Lorem.sentence }
+    
+    after(:build) do |cabin|
+      cabin.imageFile.attach(
+        io: File.open(Rails.root.join('spec', 'fixtures', 'files', 'sample_cabin_image.jpg')),
+        filename: 'sample_cabin_image.jpg',
+        content_type: 'image/jpeg'
+      )
+    end
   end
 end
