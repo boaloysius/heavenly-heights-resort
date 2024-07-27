@@ -1,27 +1,22 @@
-# frozen_string_literal: true
-
 class Users::SessionsController < Devise::SessionsController
-  # include RackSessionsFix
-
   respond_to :json
 
   private
 
   def respond_with(resource, options={})
-    if current_user
+    if resource && resource.persisted?
       render json: {
         message: "User signed in successfully", 
-        data: UserSerializer.new(current_user).serializable_hash[:data][:attributes]
+        data: ProfileSerializer.new(resource.profile).serializable_hash[:data][:attributes]
       }, status: :ok
     else
       render json: {
-        error: "User has no active session",
-      }, status: :unauthorized
+        error: "Invalid email or password"
+      }, status: :unprocessable_entity
     end
   end
 
   def respond_to_on_destroy
-
     if current_user
       render json: {
         message: "Signed out successfully"

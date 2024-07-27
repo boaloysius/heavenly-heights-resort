@@ -1,6 +1,4 @@
 Rails.application.routes.draw do
-  get 'current_user', to: 'current_user#index'
-
   devise_for :users, path: '', path_names: {
     sign_in: 'login',
     sign_out: 'logout',
@@ -13,6 +11,9 @@ Rails.application.routes.draw do
   namespace :api, defaults: {format: :json} do
     namespace :v1 do
       resources :cabins
+      get 'profile', to: 'profile#show'
+      put 'profile', to: 'profile#update'
+      # resource :profiles, only: [:index, :update]
     end
   end
 end
