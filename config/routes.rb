@@ -11,9 +11,9 @@ Rails.application.routes.draw do
   namespace :api, defaults: {format: :json} do
     namespace :v1 do
       resources :cabins
+      resources :bookings
       get 'profile', to: 'profile#show'
       put 'profile', to: 'profile#update'
-      # resource :profiles, only: [:index, :update]
     end
   end
 end
