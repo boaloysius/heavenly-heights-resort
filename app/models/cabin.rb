@@ -1,5 +1,6 @@
 class Cabin < ApplicationRecord
   has_one_attached :imageFile
+  has_many :bookings
 
   validates :maxCapacity, presence: true
   validates :regularPrice, presence: true
