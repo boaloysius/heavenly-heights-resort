@@ -7,14 +7,18 @@ class User < ApplicationRecord
         :jwt_authenticatable, jwt_revocation_strategy: self
 
   has_one :profile, dependent: :destroy
-        
+
   validates :email, presence: true, uniqueness: true
+  
+  validate :profile_attributes_presence
+  validates_associated :profile
 
   accepts_nested_attributes_for :profile
 
-  after_create :create_profile
-
-  def create_profile
-    Profile.create(user: self)
+  private
+  def profile_attributes_presence
+    if new_record? && profile.blank?
+      errors.add(:profile, "must be provided")
+    end
   end
 end

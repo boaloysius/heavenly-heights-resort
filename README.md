@@ -72,3 +72,9 @@ From the root directory of the project, run:
 ```sh
 foreman start
 ```
+
+## Run tests
+
+```sh
+bundle exec rspec spec/requests
+```

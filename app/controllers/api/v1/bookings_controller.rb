@@ -7,12 +7,15 @@ module Api
       # GET /bookings
       def index
         bookings = current_user.bookings
-        render json: bookings
+        booking_data = bookings.map do |booking|
+          BookingSerializer.new(booking).serializable_hash[:data][:attributes]
+        end
+        render json: { data: booking_data }              
       end
 
       # GET /bookings/:id
       def show
-        render json: @booking
+        render json: {data: BookingSerializer.new(@booking).serializable_hash[:data][:attributes]}
       end
 
       # POST /bookings
@@ -20,7 +23,7 @@ module Api
         @booking = current_user.bookings.build(booking_params)
 
         if @booking.save
-          render json: @booking, status: :created
+          render json: {data: BookingSerializer.new(@booking).serializable_hash[:data][:attributes]}, status: :created
         else
           render json: @booking.errors, status: :unprocessable_entity
         end
@@ -29,7 +32,7 @@ module Api
       # PATCH/PUT /bookings/:id
       def update
         if @booking.update(booking_params)
-          render json: @booking
+          render json: {data: BookingSerializer.new(@booking).serializable_hash[:data][:attributes]}
         else
           render json: @booking.errors, status: :unprocessable_entity
         end

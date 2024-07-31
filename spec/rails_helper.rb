@@ -7,6 +7,16 @@ abort("The Rails environment is running in production mode!") if Rails.env.produ
 require 'rspec/rails'
 # Add additional requires below this line. Rails is not loaded until this point!
 
+# spec/spec_helper.rb or test/test_helper.rb
+require 'simplecov'
+SimpleCov.start 'rails' do
+  add_filter '/bin/'
+  add_filter '/db/'
+  add_filter '/spec/'  # For RSpec
+  add_filter '/test/'  # For Minitest
+end
+
+
 # Requires supporting ruby files with custom matchers and macros, etc, in
 # spec/support/ and its subdirectories. Files matching `spec/**/*_spec.rb` are
 # run as spec files by default. This means that files in spec/support that end
@@ -85,4 +95,12 @@ RSpec.configure do |config|
     DatabaseCleaner.clean
   end  
   
+end
+
+# Add this block to configure shoulda-matchers
+Shoulda::Matchers.configure do |config|
+  config.integrate do |with|
+    with.test_framework :rspec
+    with.library :rails
+  end
 end

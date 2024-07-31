@@ -6,12 +6,14 @@ FactoryBot.define do
     sequence(:name) { |n| "#{n.to_s.rjust(3, '0')}" }
     description { Faker::Lorem.sentence }
     
-    after(:build) do |cabin|
-      cabin.imageFile.attach(
-        io: File.open(Rails.root.join('spec', 'fixtures', 'files', 'sample_cabin_image.jpg')),
-        filename: 'sample_cabin_image.jpg',
-        content_type: 'image/jpeg'
-      )
-    end
+    # TODO: https://github.com/boaloysius/heavenly-heights-resort/issues/25
+    
+    # after(:build) do |cabin|
+    #   cabin.imageFile.attach(
+    #     io: File.open(Rails.root.join('spec', 'fixtures', 'files', 'sample_cabin_image.jpg')),
+    #     filename: 'sample_cabin_image.jpg',
+    #     content_type: 'image/jpeg'
+    #   )
+    # end
   end
 end

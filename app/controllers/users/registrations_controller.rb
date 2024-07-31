@@ -22,10 +22,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   def respond_with(resource, options={})
     if request.method == 'POST' && resource.persisted?
-      profile = Profile.find_by(user_id: resource.id)
       render json: {
           message: 'Signed up successfully', 
-          data: ProfileSerializer.new(profile).serializable_hash[:data][:attributes] 
+          data: ProfileSerializer.new(resource.profile).serializable_hash[:data][:attributes] 
       }, status: :ok   
     else
       render json: {
