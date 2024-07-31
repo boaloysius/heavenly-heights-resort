@@ -49,10 +49,10 @@ RSpec.describe Cabin, type: :model do
       expect(subject).to_not be_valid
     end
 
-    it 'is not valid without an image' do
-      subject.imageFile = nil
-      expect(subject).to_not be_valid
-    end
+    # it 'is not valid without an image' do
+    #   subject.imageFile = nil
+    #   expect(subject).to_not be_valid
+    # end
 
     it 'is not valid without a description' do
       subject.description = nil

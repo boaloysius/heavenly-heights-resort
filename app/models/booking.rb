@@ -7,13 +7,11 @@ class Booking < ApplicationRecord
   validates :user_id, presence: true
   validates :start_date, presence: true
   validates :end_date, presence: true
-  validates :num_nights, presence: true
   validates :num_guests, presence: true
   validates :cabin_id, presence: true
   validates :status, presence: true
 
   validates :num_guests, numericality: { greater_than: 0, less_than_or_equal_to: MAXIMUM_GUESTS_PER_BOOKING }
-  validates :cabin_price, :extras_price, :total_price, numericality: { greater_than_or_equal_to: 0 }, presence: true
 
   validate :end_date_after_start_date
   validate :num_guests_within_capacity
@@ -51,7 +49,7 @@ class Booking < ApplicationRecord
   def num_guests_within_capacity
     return unless cabin.present?
 
-    if num_guests > cabin.maxCapacity
+    if num_guests && (num_guests > cabin.maxCapacity)
       errors.add(:num_guests, "cannot exceed the cabin's maximum capacity of #{cabin.maxCapacity}")
     end
   end
@@ -63,7 +61,6 @@ class Booking < ApplicationRecord
       errors.add(:num_nights, "must be between #{MINIMUM_BOOKING_LENGTH} and #{MAXIMUM_BOOKING_LENGTH} nights")
     end
   end
-
 
   def cabin_does_not_have_overlapping_bookings
     return unless cabin.present? && start_date.present? && end_date.present?

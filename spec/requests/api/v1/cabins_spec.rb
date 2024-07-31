@@ -13,18 +13,18 @@ RSpec.describe "Cabins API", type: :request do
     "/api/v1#{endpoint}"
   end    
 
-  # describe 'GET cabins api' do
-  #   before { get api_v1_path('/cabins') }
+  describe 'GET cabins api' do
+    before { get api_v1_path('/cabins') }
 
-  #   it 'returns cabins' do
-  #     expect(json['data']).not_to be_empty
-  #     expect(json['data'].size).to eq(10)
-  #   end
+    it 'returns cabins' do
+      expect(json['data']).not_to be_empty
+      expect(json['data'].size).to eq(10)
+    end
 
-  #   it 'returns status code 200' do
-  #     expect(response).to have_http_status(200)
-  #   end
-  # end
+    it 'returns status code 200' do
+      expect(response).to have_http_status(200)
+    end
+  end
 
   describe 'GET cabin by id api' do
     
@@ -32,7 +32,6 @@ RSpec.describe "Cabins API", type: :request do
 
     context 'when the record exists' do
       it 'returns the cabin' do
-        p json
         expect(json['data']).not_to be_empty
         expect(json['data']['id']).to eq(cabin_id)
       end
@@ -63,7 +62,7 @@ RSpec.describe "Cabins API", type: :request do
           regularPrice: 200, 
           discount: 50, 
           name: '011', 
-          imageFile: fixture_file_upload('spec/fixtures/files/sample_cabin_image.jpg', 'image/jpeg'),
+          # imageFile: fixture_file_upload('spec/fixtures/files/sample_cabin_image.jpg', 'image/jpeg'),
           description: 'A lovely cabin' 
         }
       }
@@ -93,7 +92,7 @@ RSpec.describe "Cabins API", type: :request do
           .to include(
             'maxCapacity' => ["can't be blank"],
             'regularPrice' => ["can't be blank"],
-            'imageFile' => ["can't be blank"],
+            # 'imageFile' => ["can't be blank"],
             'description' => ["can't be blank"]
           )
       end

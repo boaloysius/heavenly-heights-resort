@@ -52,6 +52,8 @@ group :development, :test do
   gem 'factory_bot_rails'
   gem "faker"
   gem 'database_cleaner-active_record'
+  gem 'simplecov', require: false
+  gem 'shoulda-matchers', '~> 5.0'
 end
 
 group :development do
