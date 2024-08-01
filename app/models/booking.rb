@@ -4,12 +4,13 @@ class Booking < ApplicationRecord
   belongs_to :user
   belongs_to :cabin
 
+  # Validations
   validates :user_id, presence: true
   validates :start_date, presence: true
   validates :end_date, presence: true
   validates :num_guests, presence: true
   validates :cabin_id, presence: true
-  validates :status, presence: true
+  validates :status, presence: true, inclusion: { in: STATUSES }
 
   validates :num_guests, numericality: { greater_than: 0, less_than_or_equal_to: MAXIMUM_GUESTS_PER_BOOKING }
 
@@ -21,7 +22,14 @@ class Booking < ApplicationRecord
   before_validation :set_num_nights
   before_validation :calculate_prices
 
+  # Set default status
+  after_initialize :set_default_status, if: :new_record?
+
   private
+
+  def set_default_status
+    self.status ||= BOOKED_STATUS
+  end
 
   def set_num_nights
     return unless start_date.present? && end_date.present?
@@ -72,5 +80,5 @@ class Booking < ApplicationRecord
     if overlapping_bookings.exists?
       errors.add(:base, "The cabin has overlapping bookings for the selected dates")
     end
-  end  
+  end
 end

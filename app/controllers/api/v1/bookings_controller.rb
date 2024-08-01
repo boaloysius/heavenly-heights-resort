@@ -1,29 +1,30 @@
 module Api
   module V1
-    class BookingsController < ApplicationController
+    class BookingsController < ApiController
       before_action :authenticate_user!
       before_action :set_booking, only: [:show, :update, :destroy]
+      load_and_authorize_resource
 
       # GET /bookings
       def index
-        bookings = current_user.bookings
-        booking_data = bookings.map do |booking|
+        @bookings = Booking.accessible_by(current_ability)
+        booking_data = @bookings.map do |booking|
           BookingSerializer.new(booking).serializable_hash[:data][:attributes]
         end
-        render json: { data: booking_data }              
+        render json: { data: booking_data }
       end
 
       # GET /bookings/:id
       def show
-        render json: {data: BookingSerializer.new(@booking).serializable_hash[:data][:attributes]}
+        render json: { data: BookingSerializer.new(@booking).serializable_hash[:data][:attributes] }
       end
 
       # POST /bookings
       def create
-        @booking = current_user.bookings.build(booking_params)
+        @booking = current_user.admin? ? Booking.new(admin_booking_params) : current_user.bookings.build(booking_params)
 
         if @booking.save
-          render json: {data: BookingSerializer.new(@booking).serializable_hash[:data][:attributes]}, status: :created
+          render json: { data: BookingSerializer.new(@booking).serializable_hash[:data][:attributes] }, status: :created
         else
           render json: @booking.errors, status: :unprocessable_entity
         end
@@ -31,8 +32,9 @@ module Api
 
       # PATCH/PUT /bookings/:id
       def update
-        if @booking.update(booking_params)
-          render json: {data: BookingSerializer.new(@booking).serializable_hash[:data][:attributes]}
+        params_to_use = current_user.admin? ? admin_booking_params : booking_params
+        if @booking.update(params_to_use)
+          render json: { data: BookingSerializer.new(@booking).serializable_hash[:data][:attributes] }
         else
           render json: @booking.errors, status: :unprocessable_entity
         end
@@ -47,13 +49,18 @@ module Api
       private
 
       def set_booking
-        @booking = current_user.bookings.find(params[:id])
+        @booking = Booking.find(params[:id])
+        authorize! :read, @booking
       rescue ActiveRecord::RecordNotFound
-        render json: { error: 'Booking not found' }, status: :not_found       
+        render json: { error: 'Booking not found' }, status: :not_found
       end
 
       def booking_params
-        params.require(:booking).permit(:start_date, :end_date, :num_nights, :num_guests, :cabin_price, :extras_price, :total_price, :cabin_id, :has_breakfast, :is_paid, :status, :observations)
+        params.require(:booking).permit(:start_date, :end_date, :num_nights, :num_guests, :cabin_id, :has_breakfast, :observations)
+      end
+
+      def admin_booking_params
+        params.require(:booking).permit(:user_id, :start_date, :end_date, :num_nights, :num_guests, :cabin_id, :has_breakfast, :is_paid, :status, :observations)
       end
     end
   end
