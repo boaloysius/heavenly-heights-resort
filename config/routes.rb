@@ -16,6 +16,7 @@ Rails.application.routes.draw do
         end
       end
       resources :bookings
+      get 'profile/all', to: 'profile#all'
       get 'profile', to: 'profile#show'
       put 'profile', to: 'profile#update'
     end

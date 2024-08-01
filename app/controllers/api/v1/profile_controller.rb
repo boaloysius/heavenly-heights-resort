@@ -3,6 +3,7 @@ module Api
     class ProfileController < ApiController
       before_action :authenticate_user!
       before_action :set_profile
+      load_and_authorize_resource only: [:all]
       
       def show
         render json: ProfileSerializer.new(@profile).serializable_hash[:data][:attributes], status: :ok
@@ -15,6 +16,14 @@ module Api
           render json: {errors: @profile.errors}, status: :unprocessable_entity
         end
       end
+
+      def all
+        profiles = Profile.all
+        profiles_data = profiles.map do |profile|
+          ProfileSerializer.new(profile).serializable_hash[:data][:attributes]
+        end
+        render json: { data: profiles_data }
+      end            
 
       private
 
