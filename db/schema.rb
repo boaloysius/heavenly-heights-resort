@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_07_29_160755) do
+ActiveRecord::Schema[7.1].define(version: 2024_08_01_074105) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
@@ -54,11 +54,11 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_29_160755) do
     t.integer "total_price", null: false
     t.uuid "cabin_id", null: false
     t.boolean "has_breakfast", null: false
-    t.boolean "is_paid", null: false
-    t.text "status", null: false
+    t.boolean "is_paid", default: false, null: false
     t.text "observations"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.text "status", default: "booked", null: false
     t.index ["user_id"], name: "index_bookings_on_user_id"
   end
 
@@ -94,9 +94,11 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_29_160755) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "jti"
+    t.string "role", default: "client", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["jti"], name: "index_users_on_jti"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+    t.check_constraint "role::text = ANY (ARRAY['admin'::character varying::text, 'client'::character varying::text])", name: "role_constraint"
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"

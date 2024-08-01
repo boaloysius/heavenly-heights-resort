@@ -2,7 +2,7 @@
 class BookingSerializer
   include JSONAPI::Serializer
 
-  attributes :num_nights, :num_guests, 
+  attributes :id, :num_nights, :num_guests, 
              :cabin_price, :extras_price, :total_price, :has_breakfast, 
              :is_paid, :status, :observations
 
