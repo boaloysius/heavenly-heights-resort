@@ -1,10 +1,9 @@
+# app/controllers/api/v1/cabins_controller.rb
 module Api
   module V1
     class CabinsController < ApiController
       before_action :authenticate_user!, only: [:create, :update]
-
-      # Authorize for actions
-      before_action :set_cabin, only: [:show, :update, :destroy]
+      before_action :set_cabin, only: [:show, :update, :destroy, :bookings]
       load_and_authorize_resource
 
       # GET /cabins
@@ -19,6 +18,15 @@ module Api
       # GET /cabins/:id
       def show
         render json: { data: CabinSerializer.new(@cabin).serializable_hash[:data][:attributes] }
+      end
+
+      # GET /cabins/:id/bookings
+      def bookings
+        @bookings = @cabin.bookings.order(created_at: :desc)
+        bookings_data = @bookings.map do |booking|
+          BookingSerializer.new(booking).serializable_hash[:data][:attributes]
+        end
+        render json: { data: bookings_data }
       end
 
       # POST /cabins

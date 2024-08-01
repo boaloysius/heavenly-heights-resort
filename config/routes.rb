@@ -8,9 +8,13 @@ Rails.application.routes.draw do
     registrations: 'users/registrations'
   }
   
-  namespace :api, defaults: {format: :json} do
+  namespace :api, defaults: { format: :json } do
     namespace :v1 do
-      resources :cabins
+      resources :cabins do
+        member do
+          get 'bookings'
+        end
+      end
       resources :bookings
       get 'profile', to: 'profile#show'
       put 'profile', to: 'profile#update'
