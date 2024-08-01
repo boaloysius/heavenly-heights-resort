@@ -20,8 +20,6 @@ module Api
 
       def set_profile
         @profile = current_user.profile
-      rescue ActiveRecord::RecordNotFound
-        render json: { error: 'Profile not found' }, status: :not_found
       end
 
       def profile_params

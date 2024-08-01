@@ -51,8 +51,6 @@ module Api
       def set_booking
         @booking = Booking.find(params[:id])
         authorize! :read, @booking
-      rescue ActiveRecord::RecordNotFound
-        render json: { error: 'Booking not found' }, status: :not_found
       end
 
       def booking_params

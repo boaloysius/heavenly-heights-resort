@@ -1,7 +1,9 @@
 module Api
   module V1
     class CabinsController < ApiController
-      before_action :authenticate_user!
+      before_action :authenticate_user!, only: [:create, :update]
+
+      # Authorize for actions
       before_action :set_cabin, only: [:show, :update, :destroy]
       load_and_authorize_resource
 
@@ -48,8 +50,6 @@ module Api
 
       def set_cabin
         @cabin = Cabin.find(params[:id])
-      rescue ActiveRecord::RecordNotFound
-        render json: { error: 'Cabin not found' }, status: :not_found
       end
 
       def cabin_params
