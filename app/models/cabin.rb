@@ -36,9 +36,9 @@ class Cabin < ApplicationRecord
       return errors.add(:imageFile, "is too big. Maximum size allowed is 5MB.")
     end
 
-    acceptable_types = ["image/jpeg", "image/png"]
+    acceptable_types = ["image/jpeg", "image/png", "image/webp"]
     unless acceptable_types.include?(imageFile.blob.content_type)
-      return errors.add(:imageFile, "must be a JPEG or PNG.")
+      return errors.add(:imageFile, "must be a JPEG, PNG or WEBP.")
     end
   end
 end

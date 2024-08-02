@@ -62,7 +62,7 @@ RSpec.describe "Cabins API", type: :request do
           regularPrice: 200, 
           discount: 50, 
           name: '011', 
-          # imageFile: fixture_file_upload('spec/fixtures/files/sample_cabin_image.jpg', 'image/jpeg'),
+          # imageFile: fixture_file_upload('spec/fixtures/files/sample_cabin_image.webp', 'image/jpeg'),
           description: 'A lovely cabin' 
         }
       }

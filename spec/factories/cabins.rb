@@ -10,8 +10,8 @@ FactoryBot.define do
     
     # after(:build) do |cabin|
     #   cabin.imageFile.attach(
-    #     io: File.open(Rails.root.join('spec', 'fixtures', 'files', 'sample_cabin_image.jpg')),
-    #     filename: 'sample_cabin_image.jpg',
+    #     io: File.open(Rails.root.join('spec', 'fixtures', 'files', 'sample_cabin_image.webp')),
+    #     filename: 'sample_cabin_image.webp',
     #     content_type: 'image/jpeg'
     #   )
     # end
