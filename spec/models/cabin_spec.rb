@@ -7,7 +7,7 @@ RSpec.describe Cabin, type: :model do
       regularPrice: 200,
       discount: 50,
       name: '001',
-      imageFile: fixture_file_upload('spec/fixtures/files/sample_cabin_image.jpg', 'image/jpeg'),
+      imageFile: fixture_file_upload('spec/fixtures/files/sample_cabin_image.webp', 'image/jpeg'),
       description: 'A lovely cabin'
     )
   }
@@ -43,7 +43,7 @@ RSpec.describe Cabin, type: :model do
         regularPrice: 200,
         discount: 50,
         name: '001',
-        imageFile: fixture_file_upload('spec/fixtures/files/sample_cabin_image.jpg', 'image/jpeg'),
+        imageFile: fixture_file_upload('spec/fixtures/files/sample_cabin_image.webp', 'image/jpeg'),
         description: 'A lovely cabin'
       )
       expect(subject).to_not be_valid

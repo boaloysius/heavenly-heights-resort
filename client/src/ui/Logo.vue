@@ -1,7 +1,7 @@
 <template>
-  <RouterLink to="/" className="flex items-center gap-4 z-10">
+  <RouterLink to="/" class="flex items-center gap-4 z-10">
     <img :src="logo" height="60" width="60" alt="Heavenly Heights logo" />
-    <span className="text-xl font-semibold text-primary-100">
+    <span class="text-xl font-semibold text-primary-100">
       Heavenly Heights
     </span>
   </RouterLink>
