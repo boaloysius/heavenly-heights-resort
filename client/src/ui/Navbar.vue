@@ -1,26 +1,24 @@
 <template>
-  <nav className="z-10 text-xl">
-    <ul className="flex gap-16 items-center">
+  <nav class="z-10 text-xl">
+    <ul class="flex gap-16 items-center">
       <li>
         <RouterLink
           to="/cabins"
-          className="hover:text-accent-400 transition-colors"
+          class="hover:text-accent-400 transition-colors"
         >
           Cabins
         </RouterLink>
       </li>
       <li>
-        <RouterLink
-          to="/about"
-          className="hover:text-accent-400 transition-colors"
-        >
+        <RouterLink to="/about" class="hover:text-accent-400 transition-colors">
           About
         </RouterLink>
       </li>
+
       <li>
         <RouterLink
-          to="/account"
-          className="hover:text-accent-400 transition-colors"
+          to="/dashboard"
+          class="hover:text-accent-400 transition-colors"
         >
           Guest area
         </RouterLink>
