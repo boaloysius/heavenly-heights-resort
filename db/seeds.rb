@@ -16,15 +16,15 @@ require 'faker'
     regularPrice: regular_price,
     discount: Faker::Number.between(from: 0, to: 50),
     name: format('%03d', i + 1),  # Sequential name with leading zeros
-    description: Faker::Lorem.paragraph(sentence_count: 2),
+    description: Faker::Lorem.paragraph(sentence_count: 20),
   )
 
-  # Attach an image to the cabin
-  cabin.imageFile.attach(
-    io: File.open(Rails.root.join('spec', 'fixtures', 'files', 'sample_cabin_image.webp')),
-    filename: 'sample_cabin_image.webp',
-    content_type: 'image/jpeg'
-  )
+  # # Attach an image to the cabin
+  # cabin.imageFile.attach(
+  #   io: File.open(Rails.root.join('spec', 'fixtures', 'files', 'sample_cabin_image.webp')),
+  #   filename: 'sample_cabin_image.webp',
+  #   content_type: 'image/jpeg'
+  # )
 
   # Debug output
   if cabin.save

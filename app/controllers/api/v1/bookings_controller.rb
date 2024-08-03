@@ -43,7 +43,7 @@ module Api
       # DELETE /bookings/:id
       def destroy
         @booking.destroy
-        head :no_content
+        render json: { message: "Booking Deleted Successfully." }
       end
 
       private

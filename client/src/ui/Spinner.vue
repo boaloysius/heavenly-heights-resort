@@ -1,0 +1,21 @@
+<template>
+  <div className="spinner"></div>
+</template>
+
+<style scoped>
+.spinner {
+  margin: 3.2rem auto 1.6rem;
+  width: 60px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  border: 8px solid theme("colors.primary.900");
+  border-right-color: theme("colors.primary.200");
+  animation: rotate 1s infinite linear;
+}
+
+@keyframes rotate {
+  to {
+    transform: rotate(1turn);
+  }
+}
+</style>

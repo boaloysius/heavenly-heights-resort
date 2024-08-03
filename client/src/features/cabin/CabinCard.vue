@@ -38,12 +38,22 @@
       </div>
 
       <div class="bg-primary-950 border-t border-t-primary-800 text-right">
-        <RouterLink
-          :to="`/cabins/${id}`"
-          class="border-l border-primary-800 py-4 px-6 inline-block hover:bg-accent-600 transition-all hover:text-primary-900"
-        >
-          Details & reservation &rarr;
-        </RouterLink>
+        <div class="flex">
+          <div class="flex justify-end flex-grow px-6 content-center gap-3">
+            <button class="hover:text-accent-600" @click="onDelete">
+              <PencilIcon class="h-5 w-5" />
+            </button>
+            <button class="hover:text-accent-600" @click="onDelete">
+              <TrashIcon class="h-5 w-5" />
+            </button>
+          </div>
+          <RouterLink
+            :to="`/cabins/${id}`"
+            class="border-l border-primary-800 py-4 px-6 inline-block hover:bg-accent-600 transition-all hover:text-primary-900"
+          >
+            Details & reservation &rarr;
+          </RouterLink>
+        </div>
       </div>
     </div>
   </div>
@@ -51,8 +61,11 @@
 <script setup>
 import { defineProps } from "vue";
 import { RouterLink } from "vue-router";
-import { UsersIcon } from "@heroicons/vue/24/solid";
+import { PencilIcon, TrashIcon } from "@heroicons/vue/24/solid";
+
 import DummyCabinImage from "@/assets/dummy_cabin.jpg";
+
+import { useDeleteCabin } from "@/composables/useDeleteCabin";
 
 const { cabin } = defineProps({
   cabin: {
@@ -62,4 +75,12 @@ const { cabin } = defineProps({
 });
 
 const { id, name, maxCapacity, regularPrice, discount, imageUrl } = cabin;
+
+const { isDeleting, deleteCabin } = useDeleteCabin();
+
+const onDelete = () => {
+  if (confirm("Are you sure you want to delete this cabin?")) {
+    deleteCabin(id);
+  }
+};
 </script>

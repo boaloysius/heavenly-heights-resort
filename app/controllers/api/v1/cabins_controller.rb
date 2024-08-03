@@ -51,7 +51,7 @@ module Api
       # DELETE /cabins/:id
       def destroy
         @cabin.destroy
-        head :no_content
+        render json: { message: "Cabin Deleted Successfully." }
       end
 
       private
