@@ -40,9 +40,7 @@
       <div class="bg-primary-950 border-t border-t-primary-800 text-right">
         <div class="flex">
           <div class="flex justify-end flex-grow px-6 content-center gap-3">
-            <button class="hover:text-accent-600" @click="onDelete">
-              <PencilIcon class="h-5 w-5" />
-            </button>
+            <EditCabin :cabin="cabin" />
             <button class="hover:text-accent-600" @click="onDelete">
               <TrashIcon class="h-5 w-5" />
             </button>
@@ -61,9 +59,10 @@
 <script setup>
 import { defineProps } from "vue";
 import { RouterLink } from "vue-router";
-import { PencilIcon, TrashIcon } from "@heroicons/vue/24/solid";
+import { UsersIcon, TrashIcon } from "@heroicons/vue/24/solid";
 
 import DummyCabinImage from "@/assets/dummy_cabin.jpg";
+import EditCabin from "@/features/cabin/EditCabin.vue";
 
 import { useDeleteCabin } from "@/composables/useDeleteCabin";
 
@@ -75,7 +74,6 @@ const { cabin } = defineProps({
 });
 
 const { id, name, maxCapacity, regularPrice, discount, imageUrl } = cabin;
-
 const { isDeleting, deleteCabin } = useDeleteCabin();
 
 const onDelete = () => {
