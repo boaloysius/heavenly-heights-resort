@@ -123,11 +123,11 @@ const { cabin, onSubmit } = defineProps({
 const submitButton = ref(null);
 
 const initialValues = {
-  name: cabin?.name || "",
-  maxCapacity: cabin?.maxCapacity || 0,
-  regularPrice: cabin?.regularPrice || 0,
-  discount: cabin?.discount || 0,
-  description: cabin?.description || "",
+  name: cabin?.name || "Boby cabin 1",
+  maxCapacity: cabin?.maxCapacity || 10,
+  regularPrice: cabin?.regularPrice || 100,
+  discount: cabin?.discount || 10,
+  description: cabin?.description || "Loremy ipsum setum happy being",
 };
 
 const preprocessNumber = (value) => {

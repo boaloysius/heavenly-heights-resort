@@ -1,18 +1,24 @@
+import { createCabin as createCabinApi } from "@/services/apiCabins";
+import { useToast } from "@/components/toast/useToast";
+
 import { useMutation, useQueryClient } from "@tanstack/vue-query";
-import { createEditCabin } from "@/services/apiCabins";
 
 export function useCreateCabin() {
   const queryClient = useQueryClient();
-  const { mutate: createCabin, isPending: isCreating } = useMutation({
-    mutationFn: createEditCabin,
+  const { show: showToast } = useToast();
+
+  const {
+    mutate: createCabin,
+    isPending: isCreating,
+    isSuccess,
+  } = useMutation({
+    mutationFn: createCabinApi,
     onSuccess: () => {
-      console.log("New cabin successfully created");
+      showToast("Cabin successfully created");
       queryClient.invalidateQueries({ queryKey: ["cabins"] });
     },
-    onError: (error) => {
-      console.error(error.message);
-    },
+    onError: (err) => showToast(err.message, "error"),
   });
 
-  return { isCreating, createCabin };
+  return { isCreating, createCabin, isSuccess };
 }

@@ -1,5 +1,5 @@
 <template>
-  <Dialog>
+  <Dialog v-model:open="open">
     <DialogTrigger as-child>
       <Button
         class="bg-accent-500 text-primary-800 text-md font-semibold hover:bg-accent-600 transition-all"
@@ -24,6 +24,7 @@
           type="button"
           @click="submitForm"
           class="bg-accent-500 px-4 py-4 text-primary-800 text-md hover:bg-accent-600 transition-all"
+          :disabled="isCreating"
         >
           Save changes
         </Button>
@@ -32,9 +33,8 @@
   </Dialog>
 </template>
 
-<script setup lang="ts">
-import { computed, defineProps, ref } from "vue";
-import { PencilIcon, PlusIcon } from "@heroicons/vue/24/solid";
+<script setup>
+import { ref, watch } from "vue";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -47,14 +47,25 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import CabinForm from "@/features/cabin/CabinForm.vue";
+import { useCreateCabin } from "@/composables/useCreateCabin";
 
 const cabinForm = ref(null);
+
+const open = ref(false);
+
+const { isCreating, createCabin, isSuccess } = useCreateCabin();
 
 function submitForm() {
   cabinForm.value.submit();
 }
 
-function onSubmit(values) {
-  console.log("Create cabin", values);
+async function onSubmit(newCabinData) {
+  await createCabin(newCabinData);
 }
+
+watch(isSuccess, (newValue) => {
+  if (newValue) {
+    open.value = false;
+  }
+});
 </script>
