@@ -10,7 +10,10 @@
       Welcome to paradise.
     </p>
 
-    <CabinList />
+    <div class="flex flex-col gap-4">
+      <div class="flex justify-end"><CreateCabin /></div>
+      <CabinList />
+    </div>
   </div>
 </template>
 
@@ -18,4 +21,5 @@
 // TODO: Add filter
 // TODO: Add reservation reminder
 import CabinList from "@/features/cabin/CabinList.vue";
+import CreateCabin from "@/features/cabin/CreateCabin.vue";
 </script>
