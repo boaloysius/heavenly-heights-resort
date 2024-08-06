@@ -24,6 +24,7 @@
           type="button"
           @click="submitForm"
           class="bg-accent-500 px-4 py-4 text-primary-800 text-md hover:bg-accent-600 transition-all"
+          :disabled="isEditing"
         >
           Save changes
         </Button>
@@ -32,9 +33,9 @@
   </Dialog>
 </template>
 
-<script setup lang="ts">
-import { computed, defineProps, ref } from "vue";
-import { PencilIcon, PlusIcon } from "@heroicons/vue/24/solid";
+<script setup>
+import { defineProps, ref } from "vue";
+import { PencilIcon } from "@heroicons/vue/24/solid";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -48,20 +49,24 @@ import {
 } from "@/components/ui/dialog";
 import CabinForm from "@/features/cabin/CabinForm.vue";
 
+import { useEditCabin } from "@/composables/useEditCabin";
+
 const { cabin } = defineProps({
   cabin: {
     type: Object,
-    default: () => null,
+    required: true,
   },
 });
 
 const cabinForm = ref(null);
 
+const { isEditing, editCabin } = useEditCabin();
+
 function submitForm() {
   cabinForm.value.submit();
 }
 
-function onSubmit(values) {
-  console.log("Edit cabin", values);
+function onSubmit(data) {
+  editCabin({ newCabinData: data, id: cabin.id });
 }
 </script>

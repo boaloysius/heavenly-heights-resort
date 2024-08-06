@@ -1,7 +1,7 @@
-import { useMutation, useQueryClient } from "@tanstack/vue-query";
-
 import { deleteCabin as deleteCabinApi } from "@/services/apiCabins.js";
 import { useToast } from "@/components/toast/useToast";
+
+import { useMutation, useQueryClient } from "@tanstack/vue-query";
 
 export function useDeleteCabin() {
   const queryClient = useQueryClient();
