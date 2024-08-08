@@ -3,7 +3,12 @@ class Profile < ApplicationRecord
   
   belongs_to :user
 
-  validates :fullName, presence: true
+  # Full name validation
+  validates :fullName, presence: true, length: { in: 3..20 }, format: { 
+    with: /\A[a-zA-Z\s]+\z/, 
+    message: "can only contain letters and spaces." 
+  }
+
   validates :country, presence: true, if: :country_present?
   validate :validate_country, if: :country_present?
 
