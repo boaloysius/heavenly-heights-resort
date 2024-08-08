@@ -34,7 +34,7 @@
 </template>
 
 <script setup>
-import { ref, watch } from "vue";
+import { ref } from "vue";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -46,10 +46,10 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import CabinForm from "@/features/cabin/CabinForm.vue";
-import { useCreateCabin } from "@/composables/useCreateCabin";
-
 import { formatErrors } from "@/lib/utils";
+
+import CabinForm from "./CabinForm.vue";
+import { useCreateCabin } from "./composables/useCreateCabin";
 
 const cabinForm = ref(null);
 

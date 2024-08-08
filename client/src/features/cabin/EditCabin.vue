@@ -47,9 +47,9 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import CabinForm from "@/features/cabin/CabinForm.vue";
 
-import { useEditCabin } from "@/composables/useEditCabin";
+import CabinForm from "./CabinForm.vue";
+import { useEditCabin } from "./composables/useEditCabin";
 
 import { formatErrors } from "@/lib/utils";
 

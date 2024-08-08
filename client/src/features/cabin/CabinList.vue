@@ -8,10 +8,10 @@
   </div>
 </template>
 <script setup>
-import CabinCard from "@/features/cabin/CabinCard.vue";
 import Spinner from "@/ui/Spinner.vue";
 
-import { useCabins } from "@/composables/useCabins";
+import CabinCard from "./CabinCard.vue";
+import { useCabins } from "./composables/useCabins";
 
 const { isPending, cabins } = useCabins();
 </script>

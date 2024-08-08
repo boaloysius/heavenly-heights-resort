@@ -62,9 +62,9 @@ import { RouterLink } from "vue-router";
 import { UsersIcon, TrashIcon } from "@heroicons/vue/24/solid";
 
 import DummyCabinImage from "@/assets/dummy_cabin.jpg";
-import EditCabin from "@/features/cabin/EditCabin.vue";
 
-import { useDeleteCabin } from "@/composables/useDeleteCabin";
+import EditCabin from "./EditCabin.vue";
+import { useDeleteCabin } from "./composables/useDeleteCabin";
 
 const { cabin } = defineProps({
   cabin: {
