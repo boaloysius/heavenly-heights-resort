@@ -14,3 +14,27 @@ export function formatErrors(errors) {
 
   return formattedErrors;
 }
+
+export function formatAuthErrors(errorMessages) {
+  const formattedErrors = errorMessages.reduce((acc, message) => {
+    if (typeof message === "string") {
+      // Check if the value is a string
+      // Strip "Profile " if it exists at the start of the message
+      const cleanedMessage = message.startsWith("Profile ")
+        ? message.replace("Profile ", "")
+        : message;
+
+      // Take the first word as the key, converted to lowercase
+      let key = cleanedMessage.split(" ")[0].toLowerCase();
+
+      if (key === "fullname") {
+        key = "fullName";
+      }
+
+      acc[key] = lodash.capitalize(cleanedMessage);
+    }
+    return acc;
+  }, {});
+
+  return formattedErrors;
+}

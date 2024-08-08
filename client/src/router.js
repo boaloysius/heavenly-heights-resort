@@ -5,6 +5,8 @@ import About from "@/pages/About.vue";
 import Cabins from "@/pages/Cabins.vue";
 import Cabin from "@/pages/Cabin.vue";
 import Home from "@/pages/Home.vue";
+import Login from "@/pages/Login.vue";
+import Register from "@/pages/Register.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -32,6 +34,16 @@ const router = createRouter({
           path: "cabins/:cabinId/",
           name: "cabin",
           component: Cabin,
+        },
+        {
+          path: "login",
+          name: "login",
+          component: Login,
+        },
+        {
+          path: "register",
+          name: "register",
+          component: Register,
         },
       ],
     },

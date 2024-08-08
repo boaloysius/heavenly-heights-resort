@@ -14,7 +14,19 @@
           About
         </RouterLink>
       </li>
-
+      <li>
+        <RouterLink to="/login" class="hover:text-accent-400 transition-colors">
+          Login
+        </RouterLink>
+      </li>
+      <li>
+        <RouterLink
+          to="/register"
+          class="hover:text-accent-400 transition-colors"
+        >
+          Register
+        </RouterLink>
+      </li>
       <li>
         <RouterLink
           to="/dashboard"
