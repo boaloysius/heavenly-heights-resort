@@ -1,5 +1,5 @@
 <template>
-  <Dialog>
+  <Dialog v-model:open="open">
     <DialogTrigger as-child>
       <button class="hover:text-accent-600">
         <PencilIcon class="h-5 w-5" />
@@ -47,9 +47,11 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import CabinForm from "@/features/cabin/CabinForm.vue";
 
-import { useEditCabin } from "@/composables/useEditCabin";
+import CabinForm from "./CabinForm.vue";
+import { useEditCabin } from "./composables/useEditCabin";
+
+import { formatErrors } from "@/lib/utils";
 
 const { cabin } = defineProps({
   cabin: {
@@ -60,13 +62,25 @@ const { cabin } = defineProps({
 
 const cabinForm = ref(null);
 
+const open = ref(false);
+
 const { isEditing, editCabin } = useEditCabin();
 
 function submitForm() {
   cabinForm.value.submit();
 }
 
-function onSubmit(data) {
-  editCabin({ newCabinData: data, id: cabin.id });
+async function onSubmit(values, { setErrors }) {
+  try {
+    await editCabin({ newCabinData: values, id: cabin.id });
+    console.log("Done");
+    closeDialog();
+  } catch (err) {
+    err?.errors && setErrors(formatErrors(err.errors));
+  }
+}
+
+function closeDialog() {
+  open.value = false;
 }
 </script>

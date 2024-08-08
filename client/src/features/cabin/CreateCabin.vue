@@ -34,7 +34,7 @@
 </template>
 
 <script setup>
-import { ref, watch } from "vue";
+import { ref } from "vue";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -46,26 +46,31 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import CabinForm from "@/features/cabin/CabinForm.vue";
-import { useCreateCabin } from "@/composables/useCreateCabin";
+import { formatErrors } from "@/lib/utils";
+
+import CabinForm from "./CabinForm.vue";
+import { useCreateCabin } from "./composables/useCreateCabin";
 
 const cabinForm = ref(null);
 
 const open = ref(false);
 
-const { isCreating, createCabin, isSuccess } = useCreateCabin();
+const { isCreating, createCabin } = useCreateCabin();
 
 function submitForm() {
   cabinForm.value.submit();
 }
 
-async function onSubmit(newCabinData) {
-  await createCabin(newCabinData);
+async function onSubmit(values, { setErrors }) {
+  try {
+    await createCabin(values);
+    closeDialog();
+  } catch (err) {
+    err?.errors && setErrors(formatErrors(err.errors));
+  }
 }
 
-watch(isSuccess, (newValue) => {
-  if (newValue) {
-    open.value = false;
-  }
-});
+function closeDialog() {
+  open.value = false;
+}
 </script>
