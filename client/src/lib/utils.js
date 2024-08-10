@@ -1,6 +1,7 @@
 import { clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
 import * as lodash from "lodash";
+import countriesJson from "./countries.json";
 
 export function cn(...inputs) {
   return twMerge(clsx(inputs));
@@ -38,3 +39,7 @@ export function formatAuthErrors(errorMessages) {
 
   return formattedErrors;
 }
+
+export const countries = Object.keys(countriesJson);
+
+export const countriesMap = countriesJson;

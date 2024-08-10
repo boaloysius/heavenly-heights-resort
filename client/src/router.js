@@ -7,6 +7,9 @@ import Cabin from "@/pages/Cabin.vue";
 import Home from "@/pages/Home.vue";
 import Login from "@/pages/Login.vue";
 import Register from "@/pages/Register.vue";
+import DashboardLayout from "@/layouts/DashboardLayout.vue";
+import Profile from "@/features/Profile/Profile.vue";
+import Reservations from "@/features/Reservations/Reservations.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -44,6 +47,24 @@ const router = createRouter({
           path: "register",
           name: "register",
           component: Register,
+        },
+        {
+          path: "dashboard/",
+          component: DashboardLayout,
+          children: [
+            {
+              path: "",
+              redirect: "/dashboard/profile",
+            },
+            {
+              path: "profile/",
+              component: Profile,
+            },
+            {
+              path: "reservations/",
+              component: Reservations,
+            },
+          ],
         },
       ],
     },

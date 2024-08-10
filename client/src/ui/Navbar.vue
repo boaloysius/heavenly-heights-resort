@@ -32,7 +32,7 @@
           to="/dashboard"
           class="hover:text-accent-400 transition-colors"
         >
-          Guest area
+          Dashboard
         </RouterLink>
       </li>
     </ul>
