@@ -10,6 +10,9 @@ import Register from "@/pages/Register.vue";
 import DashboardLayout from "@/layouts/DashboardLayout.vue";
 import Profile from "@/features/Profile/Profile.vue";
 import Reservations from "@/features/Reservations/Reservations.vue";
+import Logout from "@/pages/Logout.vue";
+
+import { useAuth } from "./features/auth/composables/useAuth";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -49,8 +52,14 @@ const router = createRouter({
           component: Register,
         },
         {
+          path: "logout",
+          name: "logout",
+          component: Logout,
+        },
+        {
           path: "dashboard/",
           component: DashboardLayout,
+          meta: { requiresAuth: true },
           children: [
             {
               path: "",
@@ -69,6 +78,21 @@ const router = createRouter({
       ],
     },
   ],
+});
+
+// Route guard to check for authentication
+router.beforeEach((to, from, next) => {
+  const { isAuthenticated } = useAuth();
+
+  if (to.matched.some((record) => record.meta.requiresAuth)) {
+    if (isAuthenticated.value) {
+      next(); // Proceed to the route
+    } else {
+      next({ name: "login" }); // Redirect to the login page
+    }
+  } else {
+    next(); // Proceed if the route doesn't require authentication
+  }
 });
 
 export default router;

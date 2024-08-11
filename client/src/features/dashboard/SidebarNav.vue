@@ -9,12 +9,13 @@ const sidebarNavItems = [
   {
     title: "Profile",
     href: "/dashboard/profile",
-    icon: CalendarDaysIcon,
+    icon: UserIcon,
   },
   {
     title: "Reservations",
     href: "/dashboard/reservations",
-    icon: UserIcon,
+
+    icon: CalendarDaysIcon,
   },
 ];
 </script>
