@@ -44,7 +44,7 @@ import {
 import ProfileForm from "./ProfileForm.vue";
 import Button from "@/components/ui/button/Button.vue";
 
-import { useProfile } from "./composables/usePorfile";
+import { useProfile } from "./composables/useProfile";
 import { useEditProfile } from "./composables/useEditProfile";
 
 import { formatErrors } from "@/lib/utils";

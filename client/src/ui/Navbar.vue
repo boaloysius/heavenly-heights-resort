@@ -14,12 +14,12 @@
           About
         </RouterLink>
       </li>
-      <li>
+      <li v-if="!isAuthenticated">
         <RouterLink to="/login" class="hover:text-accent-400 transition-colors">
           Login
         </RouterLink>
       </li>
-      <li>
+      <li v-if="!isAuthenticated">
         <RouterLink
           to="/register"
           class="hover:text-accent-400 transition-colors"
@@ -27,13 +27,8 @@
           Register
         </RouterLink>
       </li>
-      <li>
-        <RouterLink
-          to="/dashboard"
-          class="hover:text-accent-400 transition-colors"
-        >
-          Dashboard
-        </RouterLink>
+      <li v-if="isAuthenticated">
+        <UserNav />
       </li>
     </ul>
   </nav>
@@ -41,4 +36,9 @@
 
 <script setup>
 import { RouterLink } from "vue-router";
+
+import { useAuth } from "@/features/auth/composables/useAuth";
+import UserNav from "@/components/UserNav.vue";
+
+const { isAuthenticated } = useAuth();
 </script>

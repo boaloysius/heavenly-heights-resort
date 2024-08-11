@@ -8,10 +8,20 @@ export async function register(user) {
   return data;
 }
 
-export async function login(user) {
+export async function login(data) {
   const url = "/login";
-  const body = { user };
+  const body = { user: { email: data.email, password: data.password } };
 
-  const { data } = await rails.post(url, body);
+  return await rails.post(url, body, {
+    metadata: {
+      isRememberUser: data.isRememberUser,
+    },
+  });
+}
+
+export async function logout() {
+  const url = "/logout";
+
+  const { data } = await rails.delete(url);
   return data;
 }

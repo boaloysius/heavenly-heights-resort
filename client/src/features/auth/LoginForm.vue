@@ -44,20 +44,26 @@
       </FormField>
     </div>
     <div>
-      <FormField v-slot="{ componentField }" name="password">
-        <FormItem class="flex space-x-2 items-end space-y-0">
-          <FormControl>
-            <Checkbox
-              id="keepSignedIn"
-              v-bind="componentField"
-              class="border-white"
-            />
-          </FormControl>
-          <FormLabel
-            class="leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 space-y-0"
-          >
-            Remember me
-          </FormLabel>
+      <FormField
+        v-slot="{ value, handleChange }"
+        type="checkbox"
+        name="isRememberUser"
+      >
+        <FormItem>
+          <div class="flex space-x-2 items-end space-y-0">
+            <FormControl>
+              <Checkbox
+                :checked="value"
+                @update:checked="handleChange"
+                class="border-white"
+              />
+            </FormControl>
+            <FormLabel
+              class="leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 space-y-0"
+            >
+              Remember me
+            </FormLabel>
+          </div>
         </FormItem>
       </FormField>
     </div>
@@ -94,12 +100,14 @@ const submitButton = ref(null);
 const initialValues = {
   email: "testuser-1@gmail.com",
   password: "Password@123",
+  isRememberUser: false,
 };
 
 const loginFormSchema = toTypedSchema(
   z.object({
     email: z.string().email({ message: "Invalid email address." }),
     password: z.string(),
+    isRememberUser: z.boolean(),
   })
 );
 

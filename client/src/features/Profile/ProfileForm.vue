@@ -45,6 +45,7 @@
           <div className="flex items-center justify-between">
             <FormLabel> Country </FormLabel>
             <img
+              v-if="value"
               :src="countriesMap[value]"
               alt="Country flag"
               className="h-5 rounded-sm"

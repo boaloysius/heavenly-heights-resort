@@ -6,12 +6,12 @@ module Api
       load_and_authorize_resource only: [:all]
       
       def show
-        render json: ProfileSerializer.new(@profile).serializable_hash[:data][:attributes], status: :ok
+        render json: {data: ProfileSerializer.new(@profile).serializable_hash[:data][:attributes]}, status: :ok
       end
 
       def update
         if @profile.update(profile_params)
-          render json: ProfileSerializer.new(@profile).serializable_hash[:data][:attributes], status: :ok
+          render json: {data: ProfileSerializer.new(@profile).serializable_hash[:data][:attributes]}, status: :ok
         else
           render json: {errors: @profile.errors}, status: :unprocessable_entity
         end

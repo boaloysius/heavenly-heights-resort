@@ -6,11 +6,10 @@ export function useProfile() {
     isPending,
     data: profile,
     error,
-    isError,
   } = useQuery({
     queryKey: ["profile"],
     queryFn: getProfile,
   });
 
-  return { isPending, profile, error, isError };
+  return { isPending, profile, error };
 }
