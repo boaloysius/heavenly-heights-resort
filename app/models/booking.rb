@@ -16,10 +16,10 @@ class Booking < ApplicationRecord
 
   validate :end_date_after_start_date
   validate :num_guests_within_capacity
-  validate :num_nights_within_limits
+  validate :num_dates_within_limits
   validate :cabin_does_not_have_overlapping_bookings
 
-  before_validation :set_num_nights
+  before_validation :set_num_dates
   before_validation :calculate_prices
 
   # Set default status
@@ -31,18 +31,18 @@ class Booking < ApplicationRecord
     self.status ||= BOOKED_STATUS
   end
 
-  def set_num_nights
+  def set_num_dates
     return unless start_date.present? && end_date.present?
 
-    self.num_nights = (end_date.to_date - start_date.to_date).to_i
+    self.num_dates = (end_date.to_date - start_date.to_date).to_i + 1
   end
 
   def calculate_prices
-    return unless cabin.present? && num_nights.present?
+    return unless cabin.present? && num_dates.present?
 
     one_day_price = cabin.regularPrice - (cabin.discount || 0)
-    self.cabin_price = one_day_price * num_nights
-    self.extras_price = BREAKFAST_PRICE * num_nights
+    self.cabin_price = one_day_price * num_dates
+    self.extras_price = BREAKFAST_PRICE * num_dates
     self.total_price = cabin_price + extras_price
   end
 
@@ -62,11 +62,11 @@ class Booking < ApplicationRecord
     end
   end
 
-  def num_nights_within_limits
-    return unless num_nights.present?
+  def num_dates_within_limits
+    return unless num_dates.present?
 
-    if num_nights < MINIMUM_BOOKING_LENGTH || num_nights > MAXIMUM_BOOKING_LENGTH
-      errors.add(:num_nights, "must be between #{MINIMUM_BOOKING_LENGTH} and #{MAXIMUM_BOOKING_LENGTH} nights")
+    if num_dates < MINIMUM_BOOKING_LENGTH || num_dates > MAXIMUM_BOOKING_LENGTH
+      errors.add(:num_dates, "must be between #{MINIMUM_BOOKING_LENGTH} and #{MAXIMUM_BOOKING_LENGTH} nights")
     end
   end
 
@@ -74,11 +74,11 @@ class Booking < ApplicationRecord
     return unless cabin.present? && start_date.present? && end_date.present?
 
     overlapping_bookings = Booking.where(cabin_id: cabin.id)
-                                  .where.not(id: id) # Exclude current booking if it's an update
-                                  .where("start_date < ? AND end_date > ?", end_date, start_date)
+                                  .where.not(id: id)
+                                  .where("start_date <= ? AND end_date >= ?", end_date, start_date)
 
     if overlapping_bookings.exists?
-      errors.add(:base, "The cabin has overlapping bookings for the selected dates")
+      errors.add(:dates, "have overlapping bookings for the cabin")
     end
   end
 end

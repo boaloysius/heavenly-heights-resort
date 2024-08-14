@@ -4,7 +4,7 @@
   </div>
   <Card
     v-else
-    class="grid w-full shadow-lg bg-primary-900 text-primary-100 grid-rows-[auto_minmax(0,1fr)_auto] p-4 font-josefin border-primary-800"
+    class="grid w-full shadow-lg bg-primary-900 text-primary-100 grid-rows-[auto_minmax(0,1fr)_auto] p-4 font-josefin border-primary-800 rounded-md"
   >
     <CardHeader class="space-y-1">
       <CardTitle class="text-3xl text-accent-400 font-medium">
@@ -41,11 +41,11 @@ import {
   CardDescription,
 } from "@/components/ui/card";
 
-import ProfileForm from "./ProfileForm.vue";
+import ProfileForm from "@/features/profile/ProfileForm.vue";
 import Button from "@/components/ui/button/Button.vue";
 
-import { useProfile } from "./composables/useProfile";
-import { useEditProfile } from "./composables/useEditProfile";
+import { useProfile } from "@/features/profile//composables/useProfile";
+import { useEditProfile } from "@/features/profile//composables/useEditProfile";
 
 import { formatErrors } from "@/lib/utils";
 import Spinner from "@/ui/Spinner.vue";

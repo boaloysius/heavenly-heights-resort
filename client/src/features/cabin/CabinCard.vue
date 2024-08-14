@@ -69,7 +69,7 @@ import { useDeleteCabin } from "./composables/useDeleteCabin";
 const { cabin } = defineProps({
   cabin: {
     type: Object,
-    default: () => ({}),
+    required: true,
   },
 });
 

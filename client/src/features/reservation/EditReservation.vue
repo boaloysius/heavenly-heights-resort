@@ -1,24 +1,38 @@
 <template>
   <Dialog v-model:open="open">
     <DialogTrigger as-child>
-      <button class="hover:text-accent-600">
-        <PencilIcon class="h-5 w-5" />
-      </button>
+      <Button
+        class="group flex items-center gap-2 text-primary-300 flex-grow hover:bg-accent-600 transition-colors hover:text-primary-900 h-auto rounded-none bg-transparent py-0"
+      >
+        <span
+          class="flex items-center gap-2 uppercase text-xs font-bold flex-grow"
+        >
+          <PencilSquareIcon
+            class="h-5 w-5 text-primary-600 group-hover:text-primary-800 transition-colors"
+          />
+          <span class="mt-1">Edit</span>
+        </span>
+      </Button>
     </DialogTrigger>
     <DialogContent
       class="bg-primary-950 text-primary-100 sm:max-w-[700px] grid-rows-[auto_minmax(0,1fr)_auto] p-0 max-h-[90dvh] font-josefin border-primary-800 border"
     >
       <DialogHeader class="p-6 pb-0 mb-4">
         <DialogTitle class="text-3xl text-accent-400 font-medium">
-          <span>Edit Cabin</span>
+          <span>Edit Reservation</span>
         </DialogTitle>
         <DialogDescription class="text-md">
           <span>
-            Make changes to your cabin here. Click save when you're done.
+            Make changes to your reservation details here. Click save when
+            you're done.
           </span>
         </DialogDescription>
       </DialogHeader>
-      <CabinForm ref="cabinForm" :cabin="cabin" :onSubmit="onSubmit" />
+      <EditReservationForm
+        ref="reservationForm"
+        :reservation="reservation"
+        :onSubmit="onSubmit"
+      />
       <DialogFooter class="p-6 pt-0">
         <Button
           type="button"
@@ -34,10 +48,11 @@
 </template>
 
 <script setup>
-import { defineProps, ref } from "vue";
-import { PencilIcon } from "@heroicons/vue/24/solid";
-
+import { ref } from "vue";
 import { Button } from "@/components/ui/button";
+import { PencilSquareIcon } from "@heroicons/vue/24/solid";
+import { useEditReservation } from "./composables/useEditReservation";
+
 import {
   Dialog,
   DialogContent,
@@ -47,32 +62,27 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
+import EditReservationForm from "./EditReservationForm.vue";
 
-import CabinForm from "./CabinForm.vue";
-import { useEditCabin } from "./composables/useEditCabin";
+const { isEditing, editReservation } = useEditReservation();
 
-import { formatErrors } from "@/lib/utils";
-
-const { cabin } = defineProps({
-  cabin: {
+const { reservation } = defineProps({
+  reservation: {
     type: Object,
     required: true,
   },
 });
 
-const cabinForm = ref(null);
-
 const open = ref(false);
-
-const { isEditing, editCabin } = useEditCabin();
+const reservationForm = ref(null);
 
 function submitForm() {
-  cabinForm.value.submit();
+  reservationForm.value.submit();
 }
 
 async function onSubmit(values, { setErrors }) {
   try {
-    await editCabin({ newCabinData: values, id: cabin.id });
+    await editReservation({ newReservationData: values, id: reservation.id });
     closeDialog();
   } catch (err) {
     err?.errors && setErrors(formatErrors(err.errors));

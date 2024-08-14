@@ -8,8 +8,8 @@ import Home from "@/pages/Home.vue";
 import Login from "@/pages/Login.vue";
 import Register from "@/pages/Register.vue";
 import DashboardLayout from "@/layouts/DashboardLayout.vue";
-import Profile from "@/features/Profile/Profile.vue";
-import Reservations from "@/features/Reservations/Reservations.vue";
+import Profile from "@/pages/Profile.vue";
+import Reservations from "@/pages/Reservations.vue";
 import Logout from "@/pages/Logout.vue";
 
 import { useAuth } from "./features/auth/composables/useAuth";
@@ -67,10 +67,12 @@ const router = createRouter({
             },
             {
               path: "profile/",
+              name: "profile",
               component: Profile,
             },
             {
               path: "reservations/",
+              name: "reservations",
               component: Reservations,
             },
           ],

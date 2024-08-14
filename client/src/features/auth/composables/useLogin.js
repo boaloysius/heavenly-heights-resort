@@ -30,7 +30,7 @@ export function useLogin() {
         userLS.value = JSON.stringify(apiUser);
       }
       showToast("Login successfull!");
-      router.push({ name: "home" });
+      router.push({ name: "profile" });
     },
   });
 
