@@ -2,7 +2,7 @@ import axios from "axios";
 import { StatusCodes } from "http-status-codes";
 
 const railsFetch = axios.create({
-  baseURL: "http://127.0.0.1:5000",
+  baseURL: import.meta.env.VITE_RAILS_BASE_URL,
   timeout: 10000,
   headers: {
     Accept: "application/json",
