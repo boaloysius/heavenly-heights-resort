@@ -41,11 +41,11 @@ import {
   CardDescription,
 } from "@/components/ui/card";
 
-import ProfileForm from "./ProfileForm.vue";
+import ProfileForm from "@/features/profile/ProfileForm.vue";
 import Button from "@/components/ui/button/Button.vue";
 
-import { useProfile } from "./composables/useProfile";
-import { useEditProfile } from "./composables/useEditProfile";
+import { useProfile } from "@/features/profile//composables/useProfile";
+import { useEditProfile } from "@/features/profile//composables/useEditProfile";
 
 import { formatErrors } from "@/lib/utils";
 import Spinner from "@/ui/Spinner.vue";

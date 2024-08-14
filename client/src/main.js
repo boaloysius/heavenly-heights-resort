@@ -13,6 +13,9 @@ const queryClient = new QueryClient({
       retry: 3,
       throwOnError: true,
     },
+    mutations: {
+      throwOnError: true,
+    },
   },
 });
 

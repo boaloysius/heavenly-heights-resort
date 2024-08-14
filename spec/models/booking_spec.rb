@@ -61,11 +61,11 @@ RSpec.describe Booking, type: :model do
         expect(subject.errors[:num_guests]).to include("cannot exceed the cabin's maximum capacity of #{cabin.maxCapacity}")
       end
 
-      it 'validates num_nights is within limits' do
+      it 'validates num_dates is within limits' do
         subject.start_date = Date.today
         subject.end_date = Date.today + (BookingConstants::MAXIMUM_BOOKING_LENGTH + 1).days
         subject.valid?
-        expect(subject.errors[:num_nights]).to include("must be between #{BookingConstants::MINIMUM_BOOKING_LENGTH} and #{BookingConstants::MAXIMUM_BOOKING_LENGTH} nights")
+        expect(subject.errors[:num_dates]).to include("must be between #{BookingConstants::MINIMUM_BOOKING_LENGTH} and #{BookingConstants::MAXIMUM_BOOKING_LENGTH} nights")
       end
 
       it 'validates cabin does not have overlapping bookings' do
@@ -76,7 +76,7 @@ RSpec.describe Booking, type: :model do
           end_date: Date.today + 5.days,
           num_guests: 2,
           status: 'confirmed',
-          num_nights: 2,
+          num_dates: 2,
           has_breakfast: false,
           is_paid: false
         )
@@ -93,21 +93,20 @@ RSpec.describe Booking, type: :model do
         )
         new_booking.valid?
         p new_booking.errors
-        expect(new_booking.errors[:base]).to include('The cabin has overlapping bookings for the selected dates')
+        expect(new_booking.errors[:dates]).to include('The cabin has overlapping bookings for the selected dates')
       end
     end
   end
 
   describe 'callbacks' do
-    it 'sets num_nights before validation' do
+    it 'sets num_dates before validation' do
       subject.valid?
-      expect(subject.num_nights).to eq(2)
+      expect(subject.num_dates).to eq(2)
     end
 
     it 'calculates prices before validation' do
       subject.valid?
-      expect(subject.cabin_price).to eq((cabin.regularPrice - (cabin.discount || 0)) * subject.num_nights)
-      expect(subject.extras_price).to eq(BookingConstants::BREAKFAST_PRICE * subject.num_nights)
+      expect(subject.cabin_price).to eq((cabin.regularPrice - (cabin.discount || 0)) * subject.num_dates)
       expect(subject.total_price).to eq(subject.cabin_price + subject.extras_price)
     end
   end

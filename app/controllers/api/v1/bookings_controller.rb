@@ -26,7 +26,7 @@ module Api
         if @booking.save
           render json: { data: BookingSerializer.new(@booking).serializable_hash[:data][:attributes] }, status: :created
         else
-          render json: @booking.errors, status: :unprocessable_entity
+          render json: {errors: @booking.errors}, status: :unprocessable_entity
         end
       end
 
@@ -36,7 +36,7 @@ module Api
         if @booking.update(params_to_use)
           render json: { data: BookingSerializer.new(@booking).serializable_hash[:data][:attributes] }
         else
-          render json: @booking.errors, status: :unprocessable_entity
+          render json: {errors: @booking.errors}, status: :unprocessable_entity
         end
       end
 
@@ -54,11 +54,11 @@ module Api
       end
 
       def booking_params
-        params.require(:booking).permit(:start_date, :end_date, :num_nights, :num_guests, :cabin_id, :has_breakfast, :observations)
+        params.require(:booking).permit(:start_date, :end_date, :num_guests, :cabin_id, :has_breakfast, :observations)
       end
 
       def admin_booking_params
-        params.require(:booking).permit(:user_id, :start_date, :end_date, :num_nights, :num_guests, :cabin_id, :has_breakfast, :is_paid, :status, :observations)
+        params.require(:booking).permit(:user_id, :start_date, :end_date, :num_guests, :cabin_id, :has_breakfast, :is_paid, :status, :observations)
       end
     end
   end
