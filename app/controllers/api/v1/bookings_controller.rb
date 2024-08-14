@@ -7,7 +7,7 @@ module Api
 
       # GET /bookings
       def index
-        @bookings = Booking.accessible_by(current_ability)
+        @bookings = Booking.accessible_by(current_ability).order(created_at: :desc)
         booking_data = @bookings.map do |booking|
           BookingSerializer.new(booking).serializable_hash[:data][:attributes]
         end

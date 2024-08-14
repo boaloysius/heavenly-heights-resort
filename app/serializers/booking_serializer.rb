@@ -4,7 +4,7 @@ class BookingSerializer
 
   attributes :id, :num_dates, :num_guests, 
              :cabin_price, :extras_price, :total_price, :has_breakfast, 
-             :is_paid, :status, :observations
+             :is_paid, :status, :observations, :created_at
 
   attribute :user_profile do |booking|
     ProfileSerializer.new(booking.user.profile).serializable_hash[:data][:attributes]

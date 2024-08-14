@@ -55,7 +55,7 @@ import TextExpander from "@/ui/TextExpander.vue";
 const { cabin } = defineProps({
   cabin: {
     type: Object,
-    default: () => ({}),
+    required: true,
   },
 });
 

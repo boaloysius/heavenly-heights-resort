@@ -41,8 +41,8 @@ class Booking < ApplicationRecord
     return unless cabin.present? && num_dates.present?
 
     one_day_price = cabin.regularPrice - (cabin.discount || 0)
-    self.cabin_price = one_day_price * num_nights
-    self.extras_price = BREAKFAST_PRICE * num_nights
+    self.cabin_price = one_day_price * num_dates
+    self.extras_price = BREAKFAST_PRICE * num_dates
     self.total_price = cabin_price + extras_price
   end
 

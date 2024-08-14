@@ -55,7 +55,7 @@
           </FormField>
         </div>
 
-        <FormField v-slot="{ componentField }" name="description">
+        <FormField v-slot="{ componentField }" name="observations">
           <FormItem className="flex flex-col space-y-4 grow">
             <FormLabel>Anything we should know about your stay?</FormLabel>
             <FormControl>
@@ -244,10 +244,7 @@ const dateRangeSchema = z
 
 const reservationSchema = toTypedSchema(
   z.object({
-    observations: z
-      .string()
-      .max(200, { message: "Name must be at most 20 characters long." })
-      .optional(),
+    observations: z.string().max(500, { message: "Max 500 chars" }).optional(),
     num_guests: z.preprocess(
       preprocessNumber,
       z.number({
