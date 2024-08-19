@@ -1,0 +1,25 @@
+databases:
+  - name: heavenly-heights-db
+    databaseName: heavenly_heights_resort_production
+    user: heavenly_heights_resort
+    plan: free
+    region: oregon
+
+services:
+  - type: web
+    name: heavenly-heights-api
+    env: ruby
+    region: oregon
+    plan: free
+    buildCommand: "bundle install && bundle exec rake db:migrate && bundle exec rails db:seed"
+    startCommand: "bundle exec rails server -e production"
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: heavenly-heights-db
+          property: connectionString
+      - key: RAILS_MASTER_KEY
+        sync: false
+      - key: RAILS_ENV
+        value: production
+    autoDeploy: true
