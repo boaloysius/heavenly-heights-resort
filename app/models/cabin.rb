@@ -1,18 +1,24 @@
 class Cabin < ApplicationRecord
-  has_one_attached :imageFile
   has_many :bookings
 
   validates :maxCapacity, presence: true
   validates :regularPrice, presence: true
-  validates :name, presence: true,  uniqueness: true
-  # validate :imageFile_attached
+  validates :name, presence: true, uniqueness: true
   validates :description, presence: true
 
   validate :discount_less_than_regular_price
-  validate :acceptable_image
 
-  def imageUrl
-    Rails.application.routes.url_helpers.url_for(imageFile) if imageFile.attached?
+  after_initialize :set_default_image_url, if: :new_record?
+
+  def upload_image(image_file)
+    result = Cloudinary::Uploader.upload(image_file)
+    self.imagePublicId = result["public_id"]
+    self.imageUrl = result["secure_url"]
+  end
+
+  def set_default_image_url
+    self.imageUrl ||= 'https://res.cloudinary.com/dudulqvif/image/upload/v1724175365/dummy_cabin.jpg'
+    self.imagePublicId = 'dummy_cabin'
   end
 
   private
@@ -22,23 +28,6 @@ class Cabin < ApplicationRecord
 
     if discount >= regularPrice
       errors.add(:discount, "must be less than the regular price")
-    end
-  end
-
-  # def imageFile_attached
-  #   errors.add(:imageFile, "can't be blank") unless imageFile.attached?
-  # end  
-
-  def acceptable_image
-    return unless imageFile.attached?
-
-    unless imageFile.blob.byte_size <= 5.megabytes
-      return errors.add(:imageFile, "is too big. Maximum size allowed is 5MB.")
-    end
-
-    acceptable_types = ["image/jpeg", "image/png", "image/webp"]
-    unless acceptable_types.include?(imageFile.blob.content_type)
-      return errors.add(:imageFile, "must be a JPEG, PNG or WEBP.")
     end
   end
 end

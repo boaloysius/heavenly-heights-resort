@@ -1,4 +1,3 @@
-# app/controllers/api/v1/cabins_controller.rb
 module Api
   module V1
     class CabinsController < ApiController
@@ -32,6 +31,9 @@ module Api
       # POST /cabins
       def create
         @cabin = Cabin.new(cabin_params)
+        if params[:cabin][:imageFile].present?
+          @cabin.upload_image(params[:cabin][:imageFile].path)
+        end
         if @cabin.save
           render json: { data: CabinSerializer.new(@cabin).serializable_hash[:data][:attributes] }, status: :created
         else
@@ -41,6 +43,9 @@ module Api
 
       # PATCH/PUT /cabins/:id
       def update
+        if params[:cabin][:imageFile].present?
+          @cabin.upload_image(params[:cabin][:imageFile].path)
+        end
         if @cabin.update(cabin_params)
           render json: { data: CabinSerializer.new(@cabin).serializable_hash[:data][:attributes] }
         else
@@ -61,7 +66,7 @@ module Api
       end
 
       def cabin_params
-        params.require(:cabin).permit(:maxCapacity, :regularPrice, :discount, :name, :description, :imageFile)
+        params.require(:cabin).permit(:maxCapacity, :regularPrice, :discount, :name, :description)
       end
     end
   end

@@ -22,6 +22,12 @@ services:
         sync: false
       - key: RAILS_ENV
         value: production
+      - key: CLOUDINARY_CLOUD_NAME
+        sync: false
+      - key: CLOUDINARY_API_KEY
+        sync: false
+      - key: CLOUDINARY_API_SECRET
+        sync: false
     autoDeploy: true
 
   - type: web
@@ -36,7 +42,10 @@ services:
       - key: WEB_CONCURRENCY
         sync: false
       - key: VITE_CLOUDINARY_CLOUD_NAME
-        sync: false
+        fromService:
+          type: web
+          name: heavenly-heights-api
+          envVarKey: CLOUDINARY_CLOUD_NAME
     buildCommand: npm install; npm run build
     staticPublishPath: dist
     routes:
