@@ -62,4 +62,4 @@
 # Ignore byebug history file
 .byebug_history
 
-client/.env
+*.env

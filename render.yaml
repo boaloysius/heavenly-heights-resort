@@ -35,6 +35,8 @@ services:
           envVarKey: RENDER_EXTERNAL_URL
       - key: WEB_CONCURRENCY
         sync: false
+      - key: VITE_CLOUDINARY_CLOUD_NAME
+        sync: false
     buildCommand: npm install; npm run build
     staticPublishPath: dist
     routes:

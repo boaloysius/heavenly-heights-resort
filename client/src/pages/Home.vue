@@ -1,10 +1,13 @@
 <template>
   <main class="mt-24">
-    <img
-      :src="background"
-      class="absolute inset-0 w-full object-cover object-top h-full"
-      alt="Mountains and forests with two cabins"
+    <CloudinaryImage
+      publicId="heavenly-heights/core/bg"
+      :attrs="{
+        class: 'absolute inset-0 w-full object-cover object-top h-full',
+        alt: 'Mountains and forests with two cabins',
+      }"
     />
+
     <div class="relative z-10 text-center">
       <h1 class="text-8xl text-primary-50 mb-10 tracking-tight font-normal">
         Welcome to paradise.
@@ -20,6 +23,6 @@
 </template>
 
 <script setup>
-import background from "@/assets/bg.png";
 import { RouterLink } from "vue-router";
+import CloudinaryImage from "@/components/CloudinaryImage.vue";
 </script>

@@ -1,64 +1,51 @@
 import { createRouter, createWebHistory } from "vue-router";
-
-import RootLayout from "@/layouts/RootLayout.vue";
-import About from "@/pages/About.vue";
-import Cabins from "@/pages/Cabins.vue";
-import Cabin from "@/pages/Cabin.vue";
-import Home from "@/pages/Home.vue";
-import Login from "@/pages/Login.vue";
-import Register from "@/pages/Register.vue";
-import DashboardLayout from "@/layouts/DashboardLayout.vue";
-import Profile from "@/pages/Profile.vue";
-import Reservations from "@/pages/Reservations.vue";
-import Logout from "@/pages/Logout.vue";
-
-import { useAuth } from "./features/auth/composables/useAuth";
+import { useAuth } from "@/features/auth/composables/useAuth";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
       path: "/",
-      component: RootLayout,
+      component: () => import("@/layouts/RootLayout.vue"),
       children: [
         {
           path: "",
           name: "home",
-          component: Home,
+          component: () => import("@/pages/Home.vue"),
         },
         {
           path: "about/",
           name: "about",
-          component: About,
+          component: () => import("@/pages/About.vue"),
         },
         {
           path: "cabins/",
           name: "cabins",
-          component: Cabins,
+          component: () => import("@/pages/Cabins.vue"),
         },
         {
           path: "cabins/:cabinId/",
           name: "cabin",
-          component: Cabin,
+          component: () => import("@/pages/Cabin.vue"),
         },
         {
           path: "login",
           name: "login",
-          component: Login,
+          component: () => import("@/pages/Login.vue"),
         },
         {
           path: "register",
           name: "register",
-          component: Register,
+          component: () => import("@/pages/Register.vue"),
         },
         {
           path: "logout",
           name: "logout",
-          component: Logout,
+          component: () => import("@/pages/Logout.vue"),
         },
         {
           path: "dashboard/",
-          component: DashboardLayout,
+          component: () => import("@/layouts/DashboardLayout.vue"),
           meta: { requiresAuth: true },
           children: [
             {
@@ -68,12 +55,12 @@ const router = createRouter({
             {
               path: "profile/",
               name: "profile",
-              component: Profile,
+              component: () => import("@/pages/Profile.vue"),
             },
             {
               path: "reservations/",
               name: "reservations",
-              component: Reservations,
+              component: () => import("@/pages/Reservations.vue"),
             },
           ],
         },

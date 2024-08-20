@@ -10,7 +10,7 @@
   </span>
 </template>
 <script setup>
-import { ref, defineProps, computed } from "vue";
+import { ref, computed } from "vue";
 
 const { text } = defineProps({
   text: { type: String, required: true },

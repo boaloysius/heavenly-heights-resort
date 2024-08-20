@@ -28,18 +28,22 @@
     </div>
 
     <div class="col-span-2 relative aspect-square">
-      <img
-        :src="img1"
-        class="object-cover"
-        alt="Family sitting around a fire pit in front of cabin"
+      <CloudinaryImage
+        publicId="heavenly-heights/core/about-1"
+        :attrs="{
+          class: 'object-cover',
+          alt: 'Family sitting around a fire pit in front of cabin',
+        }"
       />
     </div>
 
     <div class="col-span-2 relative aspect-square">
-      <img
-        :src="img2"
-        class="object-cover"
-        alt="Family that manages The Heavenly Heights"
+      <CloudinaryImage
+        publicId="heavenly-heights/core/about-2"
+        :attrs="{
+          class: 'object-cover',
+          alt: 'Family that manages The Heavenly Heights',
+        }"
       />
     </div>
 
@@ -79,8 +83,7 @@
 
 <script setup>
 import { RouterLink } from "vue-router";
-import img1 from "@/assets/about-1.jpg";
-import img2 from "@/assets/about-2.jpg";
+import CloudinaryImage from "@/components/CloudinaryImage.vue";
 
 // TODO make numCabins dynamic
 const numCabins = 10;
