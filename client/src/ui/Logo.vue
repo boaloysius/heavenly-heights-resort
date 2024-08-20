@@ -4,7 +4,7 @@
       publicId="heavenly-heights/core/logo"
       :attrs="{
         class: 'object-cover',
-        alt: 'Family sitting around a fire pit in front of cabin',
+        alt: 'Logo',
         height: '60',
         width: '60',
       }"
