@@ -57,7 +57,6 @@
   </div>
 </template>
 <script setup>
-import { defineProps } from "vue";
 import { RouterLink } from "vue-router";
 import { UsersIcon, TrashIcon } from "@heroicons/vue/24/solid";
 

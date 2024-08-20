@@ -47,7 +47,6 @@
   </div>
 </template>
 <script setup>
-import { defineProps } from "vue";
 import { UsersIcon, EyeSlashIcon, MapPinIcon } from "@heroicons/vue/24/solid";
 import DummyCabinImage from "@/assets/dummy_cabin.jpg";
 import TextExpander from "@/ui/TextExpander.vue";

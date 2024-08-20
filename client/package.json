@@ -9,6 +9,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@cloudinary/url-gen": "^1.20.0",
+    "@cloudinary/vue": "^1.12.1",
     "@fontsource/josefin-sans": "^5.0.20",
     "@heroicons/vue": "^2.1.5",
     "@internationalized/date": "^3.5.5",

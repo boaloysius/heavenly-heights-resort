@@ -34,7 +34,7 @@
 </template>
 
 <script setup>
-import { defineProps, ref } from "vue";
+import { ref } from "vue";
 import { PencilIcon } from "@heroicons/vue/24/solid";
 
 import { Button } from "@/components/ui/button";
