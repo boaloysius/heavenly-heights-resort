@@ -18,6 +18,19 @@ class Profile < ApplicationRecord
 
   before_save :set_country_flag  
 
+  after_initialize :set_default_image_url, if: :new_record?
+
+  def upload_image(image_file)
+    result = Cloudinary::Uploader.upload(image_file,folder: 'heavenly-heights/profiles')
+    self.imagePublicId = result["public_id"]
+    self.imageUrl = result["secure_url"]
+  end
+
+  def set_default_image_url
+    self.imageUrl ||= 'https://res.cloudinary.com/dudulqvif/image/upload/v1724220169/profile_avatar.avif'
+    self.imagePublicId = 'profile_avatar'
+  end  
+
   private
 
   def country_present?

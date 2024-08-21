@@ -1,6 +1,6 @@
 class ProfileSerializer
   include JSONAPI::Serializer
-  attributes :fullName, :nationalID, :country, :countryFlag, :created_at
+  attributes :fullName, :nationalID, :country, :countryFlag, :created_at,  :imageUrl, :imagePublicId
   attribute :profile_complete do |profile|
     profile.profile_complete?
   end

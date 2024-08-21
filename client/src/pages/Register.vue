@@ -65,7 +65,7 @@ import {
 } from "@/components/ui/card";
 
 import RegistrationForm from "@/features/auth/RegistrationForm.vue";
-import CloudinaryImage from "@/components/CloudinaryImage.vue";
+import { CloudinaryImage } from "@/components/cloudinary-image";
 
 import { formatAuthErrors } from "@/lib/utils";
 

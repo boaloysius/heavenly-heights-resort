@@ -11,10 +11,11 @@ class Cabin < ApplicationRecord
   after_initialize :set_default_image_url, if: :new_record?
 
   def upload_image(image_file)
-    result = Cloudinary::Uploader.upload(image_file)
+    result = Cloudinary::Uploader.upload(image_file, folder: 'heavenly-heights/cabins')
     self.imagePublicId = result["public_id"]
     self.imageUrl = result["secure_url"]
   end
+  
 
   def set_default_image_url
     self.imageUrl ||= 'https://res.cloudinary.com/dudulqvif/image/upload/v1724175365/dummy_cabin.jpg'

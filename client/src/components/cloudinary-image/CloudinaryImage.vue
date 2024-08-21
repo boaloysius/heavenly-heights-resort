@@ -6,15 +6,7 @@
 import { AdvancedImage } from "@cloudinary/vue";
 import { lazyload, placeholder } from "@cloudinary/vue";
 import { format, quality } from "@cloudinary/url-gen/actions/delivery";
-import { Cloudinary } from "@cloudinary/url-gen";
-
-const cloudName = import.meta.env.VITE_CLOUDINARY_CLOUD_NAME;
-
-const cloudinary = new Cloudinary({
-  cloud: {
-    cloudName,
-  },
-});
+import cld from "./cloudinary";
 
 const props = defineProps({
   publicId: {
@@ -36,9 +28,7 @@ const defaultPlugins = [lazyload(), placeholder()];
 const defaultActions = [format("auto"), quality("auto")];
 
 // Configure the image with default settings
-const configuredImage = cloudinary
-  .image(props.publicId)
-  .delivery(...defaultActions);
+const configuredImage = cld.image(props.publicId).delivery(...defaultActions);
 
 // Combine default plugins with any custom plugins
 const plugins = [...defaultPlugins, ...(props.plugins || [])];

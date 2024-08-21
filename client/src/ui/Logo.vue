@@ -16,6 +16,6 @@
 </template>
 
 <script setup>
-import CloudinaryImage from "@/components/CloudinaryImage.vue";
+import { CloudinaryImage } from "@/components/cloudinary-image";
 import { RouterLink } from "vue-router";
 </script>

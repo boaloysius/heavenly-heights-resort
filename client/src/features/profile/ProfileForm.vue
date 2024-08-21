@@ -92,6 +92,22 @@
       </FormField>
     </div>
 
+    <div class="flex flex-col w-full max-w-sm gap-2">
+      <FormField v-slot="{ handleChange }" name="imageFile">
+        <FormItem>
+          <FormLabel>Profile image</FormLabel>
+          <FormControl>
+            <Input
+              @change="handleChange"
+              type="file"
+              class="text-md pt-1 text-gray-900 border border-gray-300 rounded-sm cursor-pointer bg-gray-100"
+            />
+          </FormControl>
+          <FormMessage />
+        </FormItem>
+      </FormField>
+    </div>
+
     <!-- Hidden submit button -->
     <button type="submit" ref="submitButton" class="hidden">Submit</button>
   </Form>
@@ -135,23 +151,38 @@ const { onSubmit, profile } = defineProps({
 const submitButton = ref(null);
 
 const profileFormSchema = toTypedSchema(
-  z.object({
-    fullName: z
-      .string()
-      .min(3, { message: "Name must be at least 3 characters long." })
-      .max(20, { message: "Name must be at most 20 characters long." })
-      .regex(/^[a-zA-Z\s]+$/, {
-        message: "Name can only contain letters and spaces.",
-      }),
-    email: z.string().email({ message: "Invalid email address." }),
-    country: z.string(),
-    nationalID: z
-      .string()
-      .regex(
-        /^[a-zA-Z0-9]+$/,
-        "National ID must contain only alphanumeric characters"
-      ),
-  })
+  z
+    .object({
+      fullName: z
+        .string()
+        .min(3, { message: "Name must be at least 3 characters long." })
+        .max(20, { message: "Name must be at most 20 characters long." })
+        .regex(/^[a-zA-Z\s]+$/, {
+          message: "Name can only contain letters and spaces.",
+        }),
+      email: z.string().email({ message: "Invalid email address." }),
+      country: z.string(),
+      nationalID: z
+        .string()
+        .regex(
+          /^[a-zA-Z0-9]+$/,
+          "National ID must contain only alphanumeric characters"
+        ),
+      imageFile: z.instanceof(File).optional(),
+    })
+    .refine(
+      (data) => {
+        if (!data.imageFile) return true;
+        return ["image/jpeg", "image/png", "image/gif"].includes(
+          data.imageFile.type
+        );
+      },
+      {
+        message:
+          "Invalid file type. Only JPEG, PNG, and GIF images are allowed.",
+        path: ["imageFile"],
+      }
+    )
 );
 
 const submit = () => {

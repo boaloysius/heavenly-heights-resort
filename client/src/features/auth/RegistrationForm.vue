@@ -95,8 +95,8 @@ const { onSubmit } = defineProps({
 const submitButton = ref(null);
 
 const initialValues = {
-  fullName: "Test user one",
-  email: "testuser-1@gmail.com",
+  fullName: "Client one",
+  email: "client-1@gmail.com",
   password: "Password@123",
   confirmPassword: "Password@123",
 };

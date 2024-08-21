@@ -24,5 +24,5 @@
 
 <script setup>
 import { RouterLink } from "vue-router";
-import CloudinaryImage from "@/components/CloudinaryImage.vue";
+import { CloudinaryImage } from "@/components/cloudinary-image";
 </script>
