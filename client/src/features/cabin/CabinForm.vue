@@ -86,6 +86,23 @@
         </FormItem>
       </FormField>
     </div>
+
+    <div class="flex flex-col w-full max-w-sm gap-2">
+      <FormField v-slot="{ handleChange }" name="imageFile">
+        <FormItem>
+          <FormLabel>Thumbnail</FormLabel>
+          <FormControl>
+            <Input
+              @change="handleChange"
+              type="file"
+              class="text-md pt-1 text-gray-900 border border-gray-300 rounded-sm cursor-pointer bg-gray-100"
+            />
+          </FormControl>
+          <FormMessage />
+        </FormItem>
+      </FormField>
+    </div>
+
     <!-- Hidden submit button -->
     <button type="submit" ref="submitButton" class="hidden">Submit</button>
   </Form>
@@ -172,6 +189,8 @@ const cabinFormSchema = toTypedSchema(
         .max(1000, {
           message: "Description must be at most 1000 characters long.",
         }),
+
+      imageFile: z.instanceof(File).optional(),
     })
     .refine((data) => data.discount <= data.regularPrice, {
       message: "Discount cannot be more than regular price",
