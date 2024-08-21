@@ -18,6 +18,8 @@ class Cabin < ApplicationRecord
   
 
   def set_default_image_url
+    return if self.imageUrl
+    
     self.imageUrl ||= 'https://res.cloudinary.com/dudulqvif/image/upload/v1724175365/dummy_cabin.jpg'
     self.imagePublicId = 'dummy_cabin'
   end

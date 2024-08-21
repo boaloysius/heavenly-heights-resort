@@ -1,10 +1,12 @@
 <template>
   <div class="flex border border-primary-800 rounded-md overflow-hidden">
     <div class="relative flex-1 h-32">
-      <img
-        :src="imageUrl || DummyCabinImage"
-        :alt="`Cabin ${name}`"
-        class="border-r border-primary-800 object-cover w-full h-full"
+      <CloudinaryImage
+        :publicId="imagePublicId"
+        :attrs="{
+          class: 'border-r border-primary-800 object-cover w-full h-full',
+          alt: `Cabin ${name}`,
+        }"
       />
     </div>
 
@@ -69,7 +71,7 @@
 import { computed } from "vue";
 import { format, formatDistance, isPast, isToday, parseISO } from "date-fns";
 
-import DummyCabinImage from "@/assets/dummy_cabin.jpg";
+import { CloudinaryImage } from "@/components/cloudinary-image";
 import DeleteReservation from "./DeleteReservation.vue";
 import EditReservation from "./EditReservation.vue";
 
@@ -100,7 +102,14 @@ const {
   start_date,
   end_date,
   created_at,
-  cabin: { id: cabinId, name, maxCapacity, regularPrice, discount, imageUrl },
+  cabin: {
+    id: cabinId,
+    name,
+    maxCapacity,
+    regularPrice,
+    discount,
+    imagePublicId,
+  },
 } = reservation;
 
 const isPastReservation = computed(() => isPast(new Date(start_date)));
