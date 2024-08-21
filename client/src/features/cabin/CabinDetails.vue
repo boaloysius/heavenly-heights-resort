@@ -3,10 +3,12 @@
     class="grid grid-cols-[3fr_4fr] gap-20 border border-primary-800 py-3 px-10 mb-24"
   >
     <div class="relative scale-[1.15] -translate-x-3">
-      <img
-        :src="imageUrl || DummyCabinImage"
-        :alt="`Cabin ${name}`"
-        class="object-cover w-full h-full"
+      <CloudinaryImage
+        :publicId="imagePublicId"
+        :attrs="{
+          class: 'object-cover w-full h-full',
+          alt: `Cabin ${name}`,
+        }"
       />
     </div>
 
@@ -48,7 +50,7 @@
 </template>
 <script setup>
 import { UsersIcon, EyeSlashIcon, MapPinIcon } from "@heroicons/vue/24/solid";
-import DummyCabinImage from "@/assets/dummy_cabin.jpg";
+import CloudinaryImage from "@/components/CloudinaryImage.vue";
 import TextExpander from "@/ui/TextExpander.vue";
 
 const { cabin } = defineProps({
@@ -58,6 +60,13 @@ const { cabin } = defineProps({
   },
 });
 
-const { id, name, maxCapacity, regularPrice, discount, imageUrl, description } =
-  cabin;
+const {
+  id,
+  name,
+  maxCapacity,
+  regularPrice,
+  discount,
+  imagePublicId,
+  description,
+} = cabin;
 </script>

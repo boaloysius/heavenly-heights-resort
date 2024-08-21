@@ -1,10 +1,12 @@
 <template>
   <div class="flex border-primary-800 border">
     <div class="relative flex-1">
-      <img
-        :src="imageUrl || DummyCabinImage"
-        :alt="`Cabin ${name}`"
-        class="border-r border-primary-800 object-cover w-full h-full"
+      <CloudinaryImage
+        :publicId="imagePublicId"
+        :attrs="{
+          class: 'border-r border-primary-800 object-cover w-full h-full',
+          alt: `Cabin ${name}`,
+        }"
       />
     </div>
 
@@ -60,10 +62,9 @@
 import { RouterLink } from "vue-router";
 import { UsersIcon, TrashIcon } from "@heroicons/vue/24/solid";
 
-import DummyCabinImage from "@/assets/dummy_cabin.jpg";
-
 import EditCabin from "./EditCabin.vue";
 import { useDeleteCabin } from "./composables/useDeleteCabin";
+import CloudinaryImage from "@/components/CloudinaryImage.vue";
 
 const { cabin } = defineProps({
   cabin: {
@@ -72,7 +73,7 @@ const { cabin } = defineProps({
   },
 });
 
-const { id, name, maxCapacity, regularPrice, discount, imageUrl } = cabin;
+const { id, name, maxCapacity, regularPrice, discount, imagePublicId } = cabin;
 const { isDeleting, deleteCabin } = useDeleteCabin();
 
 const onDelete = () => {
