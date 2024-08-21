@@ -63,7 +63,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import CloudinaryImage from "@/components/CloudinaryImage.vue";
+import { CloudinaryImage } from "@/components/cloudinary-image";
 import LoginForm from "@/features/auth/LoginForm.vue";
 
 import { useLogin } from "@/features/auth/composables/useLogin";

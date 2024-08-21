@@ -10,6 +10,9 @@ module Api
       end
 
       def update
+        if params[:profile][:imageFile].present?
+          @profile.upload_image(params[:profile][:imageFile].path)
+        end        
         if @profile.update(profile_params)
           render json: {data: ProfileSerializer.new(@profile).serializable_hash[:data][:attributes]}, status: :ok
         else

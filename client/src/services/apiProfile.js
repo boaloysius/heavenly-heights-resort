@@ -8,10 +8,19 @@ export async function getProfile() {
 }
 
 export async function editProfile(newProfile) {
-  const url = PROFILE_PATH;
-  const body = { profile: newProfile };
+  const formData = new FormData();
+  formData.append("profile[country]", newProfile.country);
+  formData.append("profile[email]", newProfile.email);
+  formData.append("profile[fullName]", newProfile.fullName);
+  formData.append("profile[nationalID]", newProfile.nationalID);
 
-  const { data } = await rails.put(url, body);
+  if (newProfile.imageFile) {
+    formData.append("profile[imageFile]", newProfile.imageFile);
+  }
+
+  const url = PROFILE_PATH;
+
+  const { data } = await rails.put(url, formData);
   return data;
 }
 

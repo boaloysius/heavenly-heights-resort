@@ -64,7 +64,7 @@ import { UsersIcon, TrashIcon } from "@heroicons/vue/24/solid";
 
 import EditCabin from "./EditCabin.vue";
 import { useDeleteCabin } from "./composables/useDeleteCabin";
-import CloudinaryImage from "@/components/CloudinaryImage.vue";
+import { CloudinaryImage } from "@/components/cloudinary-image";
 
 const { cabin } = defineProps({
   cabin: {

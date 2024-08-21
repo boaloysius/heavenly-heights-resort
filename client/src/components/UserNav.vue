@@ -1,9 +1,9 @@
 <template>
   <DropdownMenu>
     <DropdownMenuTrigger as-child>
-      <Button variant="ghost" class="relative h-8 w-8">
+      <Button variant="ghost" class="relative h-9 w-9 rounded-full">
         <Avatar class="h-8 w-8">
-          <AvatarImage :src="ProfileAvatar" alt="@radix-vue" />
+          <AvatarImage :src="profileAvatarURL" alt="@radix-vue" />
           <AvatarFallback>{{ shortName }}</AvatarFallback>
         </Avatar>
       </Button>
@@ -53,6 +53,7 @@
 </template>
 
 <script setup>
+import { fill } from "@cloudinary/url-gen/actions/resize";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import {
@@ -66,8 +67,6 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 
-import ProfileAvatar from "@/assets/profile_avatar.avif";
-
 import { useAuth } from "@/features/auth/composables/useAuth";
 import { RouterLink } from "vue-router";
 import {
@@ -76,5 +75,12 @@ import {
   ArrowRightEndOnRectangleIcon,
 } from "@heroicons/vue/24/solid";
 
+import { cld } from "./cloudinary-image";
+
 const { user, shortName } = useAuth();
+
+const profileAvatarURL = cld
+  .image(user.value.imagePublicId)
+  .resize(fill().width(32).height(32))
+  .toURL();
 </script>

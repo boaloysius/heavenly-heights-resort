@@ -83,7 +83,7 @@
 
 <script setup>
 import { RouterLink } from "vue-router";
-import CloudinaryImage from "@/components/CloudinaryImage.vue";
+import { CloudinaryImage } from "@/components/cloudinary-image";
 
 // TODO make numCabins dynamic
 const numCabins = 10;
