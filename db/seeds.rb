@@ -1,5 +1,36 @@
 require 'faker'
 
+# Create an admin user
+admin_user = User.create!(
+  email: 'admin-1@gmail.com',
+  password: 'Password@123',
+  role: 'admin',
+  profile_attributes: {
+    fullName: 'Admin one',
+    country: 'Australia',
+    nationalID: 'qwezd123',
+    imagePublicId: "admin-1",
+    imageUrl: "https://res.cloudinary.com/dudulqvif/image/upload/v1724264719/admin-1"    
+  }
+)
+
+# Create a client user
+client_user = User.create!(
+  email: 'client-1@gmail.com',
+  password: 'Password@123',
+  role: 'client',
+  profile_attributes: {
+    fullName: 'client one',
+    country: 'India',
+    nationalID: 'qwezd123',
+    imagePublicId: "client-1",
+    imageUrl: "https://res.cloudinary.com/dudulqvif/image/upload/v1724264719/client-1"
+  }
+)
+
+puts "Created admin user: #{admin_user.email}" if admin_user.persisted?
+puts "Created client user: #{client_user.email}" if client_user.persisted?
+
 8.times do |i|
   max_capacity = Faker::Number.between(from: 1, to: 8)
 

@@ -27,6 +27,8 @@ class Profile < ApplicationRecord
   end
 
   def set_default_image_url
+    return if self.imageUrl
+    
     self.imageUrl ||= 'https://res.cloudinary.com/dudulqvif/image/upload/v1724220169/profile_avatar.avif'
     self.imagePublicId = 'profile_avatar'
   end  
