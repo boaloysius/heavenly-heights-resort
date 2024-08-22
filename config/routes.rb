@@ -19,6 +19,8 @@ Rails.application.routes.draw do
       get 'profile/all', to: 'profile#all'
       get 'profile', to: 'profile#show'
       put 'profile', to: 'profile#update'
+
+      get 'profile/:user_id/bookings', to: 'profile#bookings', as: :profile_user_bookings
     end
   end
 end
