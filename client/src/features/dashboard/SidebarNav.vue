@@ -1,22 +1,32 @@
 <script setup>
-import { CalendarDaysIcon, UserIcon } from "@heroicons/vue/24/solid";
+import { CalendarDaysIcon, UserIcon, UsersIcon } from "@heroicons/vue/24/solid";
 import { RouterLink, useRoute } from "vue-router";
 import SignOutButton from "./SignoutButton.vue";
+import { useAuth } from "@/features/auth/composables/useAuth";
 
 const route = useRoute();
+const { isAdmin } = useAuth();
 
 const sidebarNavItems = [
   {
-    title: "Profile",
+    title: "My Profile",
     href: "/dashboard/profile",
     icon: UserIcon,
   },
   {
     title: "Reservations",
     href: "/dashboard/reservations",
-
     icon: CalendarDaysIcon,
   },
+  ...(isAdmin.value
+    ? [
+        {
+          title: "Users",
+          href: "/dashboard/users",
+          icon: UsersIcon,
+        },
+      ]
+    : []),
 ];
 </script>
 

@@ -81,6 +81,9 @@ function submitForm() {
 }
 
 async function onSubmit(values, { setErrors }) {
+  if (Object.keys(values).includes("is_paid")) {
+    values["is_paid"] = JSON.parse(values["is_paid"]);
+  }
   try {
     await editReservation({ newReservationData: values, id: reservation.id });
     closeDialog();

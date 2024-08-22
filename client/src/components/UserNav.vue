@@ -3,7 +3,7 @@
     <DropdownMenuTrigger as-child>
       <Button variant="ghost" class="relative h-9 w-9 rounded-full">
         <Avatar class="h-8 w-8">
-          <AvatarImage :src="profileAvatarURL" alt="@radix-vue" />
+          <AvatarImage :src="profileAvatarURL" :alt="shortName" />
           <AvatarFallback>{{ shortName }}</AvatarFallback>
         </Avatar>
       </Button>
@@ -75,7 +75,7 @@ import {
   ArrowRightEndOnRectangleIcon,
 } from "@heroicons/vue/24/solid";
 
-import { cld } from "./cloudinary-image";
+import { cld } from "@/components/cloudinary-image";
 
 const { user, shortName } = useAuth();
 

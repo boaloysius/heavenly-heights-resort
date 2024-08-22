@@ -33,7 +33,10 @@ module Api
         if profile
           authorize! :bookings, profile
           bookings = profile.user.bookings
-          render json: { data: bookings }, status: :ok
+          booking_data = bookings.map do |booking|
+            BookingSerializer.new(booking).serializable_hash[:data][:attributes]
+          end
+          render json: { data: {profile: profile, bookings:booking_data} }, status: :ok
         else
           render json: { errors: "Profile not found" }, status: :not_found
         end

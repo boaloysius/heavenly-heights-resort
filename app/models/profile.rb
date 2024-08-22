@@ -12,16 +12,16 @@ class Profile < ApplicationRecord
   validates :country, presence: true, if: :country_present?
   validate :validate_country, if: :country_present?
 
+  before_validation :capitalize_full_name # Add this line
+  before_save :set_country_flag  
+  after_initialize :set_default_image_url, if: :new_record?
+
   def profile_complete?
     fullName.present? && country.present? && nationalID.present?
   end
 
-  before_save :set_country_flag  
-
-  after_initialize :set_default_image_url, if: :new_record?
-
   def upload_image(image_file)
-    result = Cloudinary::Uploader.upload(image_file,folder: 'heavenly-heights/profiles')
+    result = Cloudinary::Uploader.upload(image_file, folder: 'heavenly-heights/profiles')
     self.imagePublicId = result["public_id"]
     self.imageUrl = result["secure_url"]
   end
@@ -34,6 +34,10 @@ class Profile < ApplicationRecord
   end  
 
   private
+
+  def capitalize_full_name
+    self.fullName = fullName.split.map(&:capitalize).join(' ') if fullName.present?
+  end
 
   def country_present?
     country.present?

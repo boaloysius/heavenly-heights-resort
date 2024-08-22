@@ -1,11 +1,13 @@
 <template>
-  <div class="flex border border-primary-800 rounded-md overflow-hidden">
+  <li class="flex border border-primary-800 rounded-md overflow-hidden">
     <div class="relative flex-1 h-32">
       <CloudinaryImage
         :publicId="imagePublicId"
         :attrs="{
           class: 'border-r border-primary-800 object-cover w-full h-full',
           alt: `Cabin ${name}`,
+          height: '32',
+          width: '32',
         }"
       />
     </div>
@@ -18,8 +20,22 @@
 
         <div class="flex gap-2">
           <span
-            v-if="status == 'paid'"
+            v-if="is_paid"
             class="bg-green-800 text-green-200 h-7 px-3 uppercase text-xs font-bold flex items-center rounded-sm"
+          >
+            Paid
+          </span>
+          <span
+            :class="
+              cn(
+                'h-7 px-3 uppercase text-xs font-bold flex items-center rounded-sm',
+                {
+                  'bg-gray-200 text-gray-800': status == 'booked',
+                  'bg-green-800 text-green-200': status == 'confirmed',
+                  'bg-yellow-800 text-yellow-200': status == 'checkedin',
+                }
+              )
+            "
           >
             {{ status }}
           </span>
@@ -55,6 +71,9 @@
         <p class="text-lg text-primary-300">
           {{ num_guests }} guest{{ num_guests > 1 && "s" }}
         </p>
+        <p v-if="isAdmin" class="text-primary-300">&bull;</p>
+        <p v-if="isAdmin" class="text-lg text-primary-300">{{ displayName }}</p>
+
         <p class="ml-auto text-sm text-primary-400">
           Booked {{ format(new Date(created_at), "EEE, MMM dd yyyy, p") }}
         </p>
@@ -65,12 +84,13 @@
       <EditReservation v-if="!isPastReservation" :reservation="reservation" />
       <DeleteReservation v-if="!isPastReservation" :reservation="reservation" />
     </div>
-  </div>
+  </li>
 </template>
 <script setup>
 import { computed } from "vue";
 import { format, formatDistance, isPast, isToday, parseISO } from "date-fns";
 
+import { cn } from "@/lib/utils";
 import { CloudinaryImage } from "@/components/cloudinary-image";
 import DeleteReservation from "./DeleteReservation.vue";
 import EditReservation from "./EditReservation.vue";
@@ -110,7 +130,12 @@ const {
     discount,
     imagePublicId,
   },
+  user_profile: { fullName },
 } = reservation;
+import { useAuth } from "@/features/auth/composables/useAuth";
 
 const isPastReservation = computed(() => isPast(new Date(start_date)));
+const displayName = computed(() => fullName.substring(0, 20));
+
+const { isAdmin } = useAuth();
 </script>
