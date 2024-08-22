@@ -12,7 +12,8 @@ class Ability
     else
       can :read, Booking, user_id: user.id
       can [:create, :update, :destroy], Booking, user_id: user.id
-      can [:read], Cabin
+      can :read, Cabin
+      can :bookings, Profile, user_id: user.id
     end
   end
 end

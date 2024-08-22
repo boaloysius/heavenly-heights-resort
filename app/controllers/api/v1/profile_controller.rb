@@ -28,6 +28,17 @@ module Api
         render json: { data: profiles_data }
       end            
 
+      def bookings
+        profile = Profile.find_by(user_id: params[:user_id])
+        if profile
+          authorize! :bookings, profile
+          bookings = profile.user.bookings
+          render json: { data: bookings }, status: :ok
+        else
+          render json: { errors: "Profile not found" }, status: :not_found
+        end
+      end
+
       private
 
       def set_profile
