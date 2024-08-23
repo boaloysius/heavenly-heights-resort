@@ -18,11 +18,15 @@ export function useAuth() {
   // Computed property to determine if the user is authenticated
   const isAuthenticated = computed(() => user.value !== null);
 
+  // Computed property to determine if the user is an admin
+  const isAdmin = computed(() => user.value.role == "admin");
+
   const shortName = computed(() => user.value?.fullName.split(" ")[0] || null);
 
   return {
     user,
     isAuthenticated,
     shortName,
+    isAdmin,
   };
 }

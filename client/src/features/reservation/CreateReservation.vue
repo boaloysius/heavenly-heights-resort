@@ -10,10 +10,7 @@
         <p>Logged in as</p>
         <div className="flex gap-4 items-center">
           <Avatar class="h-8 w-8">
-            <AvatarImage
-              src="/src/assets/profile_avatar.avif"
-              :alt="shortName"
-            />
+            <AvatarImage :src="profileAvatarURL" :alt="shortName" />
             <AvatarFallback>{{ shortName }}</AvatarFallback>
           </Avatar>
           <p>{{ user.fullName }}</p>
@@ -28,6 +25,7 @@
 
 <script setup>
 import { useRouter } from "vue-router";
+import { fill } from "@cloudinary/url-gen/actions/resize";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import LoginMessage from "@/components/LoginMessage.vue";
 import ReservationForm from "./ReservationForm.vue";
@@ -35,6 +33,7 @@ import ReservationForm from "./ReservationForm.vue";
 import { useAuth } from "../auth/composables/useAuth";
 import { useCreateReservation } from "./composables/useCreateReservation";
 import { formatErrors } from "@/lib/utils";
+import { cld } from "@/components/cloudinary-image";
 
 const { cabin } = defineProps({
   cabin: {
@@ -62,4 +61,9 @@ async function onSubmit(values, { setErrors }) {
     err?.errors && setErrors(formatErrors(err.errors));
   }
 }
+
+const profileAvatarURL = cld
+  .image(user.value.imagePublicId)
+  .resize(fill().width(32).height(32))
+  .toURL();
 </script>

@@ -11,7 +11,7 @@
     </p>
 
     <div class="flex flex-col gap-4">
-      <div class="flex justify-end"><CreateCabin /></div>
+      <div v-if="isAdmin" class="flex justify-end"><CreateCabin /></div>
       <CabinList />
     </div>
   </div>
@@ -22,4 +22,6 @@
 // TODO: Add reservation reminder
 import CabinList from "@/features/cabin/CabinList.vue";
 import CreateCabin from "@/features/cabin/CreateCabin.vue";
+import { useAuth } from "@/features/auth/composables/useAuth";
+const { isAdmin } = useAuth();
 </script>

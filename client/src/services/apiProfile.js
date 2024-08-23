@@ -7,6 +7,12 @@ export async function getProfile() {
   return data;
 }
 
+export async function getProfiles() {
+  const url = `${PROFILE_PATH}/all`;
+  const { data } = await rails.get(url);
+  return data;
+}
+
 export async function editProfile(newProfile) {
   const formData = new FormData();
   formData.append("profile[country]", newProfile.country);
@@ -26,6 +32,12 @@ export async function editProfile(newProfile) {
 
 export async function getAllProfiles() {
   const url = `${PROFILE_PATH}/all`;
+  const { data } = await rails.get(url);
+  return data;
+}
+
+export async function getUserReservations(user_id) {
+  const url = `${PROFILE_PATH}/${user_id}/bookings`;
   const { data } = await rails.get(url);
   return data;
 }

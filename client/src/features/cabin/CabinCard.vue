@@ -42,8 +42,12 @@
       <div class="bg-primary-950 border-t border-t-primary-800 text-right">
         <div class="flex">
           <div class="flex justify-end flex-grow px-6 content-center gap-3">
-            <EditCabin :cabin="cabin" />
-            <button class="hover:text-accent-600" @click="onDelete">
+            <EditCabin v-if="isAdmin" :cabin="cabin" />
+            <button
+              v-if="isAdmin"
+              class="hover:text-accent-600"
+              @click="onDelete"
+            >
               <TrashIcon class="h-5 w-5" />
             </button>
           </div>
@@ -65,6 +69,7 @@ import { UsersIcon, TrashIcon } from "@heroicons/vue/24/solid";
 import EditCabin from "./EditCabin.vue";
 import { useDeleteCabin } from "./composables/useDeleteCabin";
 import { CloudinaryImage } from "@/components/cloudinary-image";
+import { useAuth } from "../auth/composables/useAuth";
 
 const { cabin } = defineProps({
   cabin: {
@@ -75,6 +80,7 @@ const { cabin } = defineProps({
 
 const { id, name, maxCapacity, regularPrice, discount, imagePublicId } = cabin;
 const { isDeleting, deleteCabin } = useDeleteCabin();
+const { isAdmin } = useAuth();
 
 const onDelete = () => {
   if (confirm("Are you sure you want to delete this cabin?")) {

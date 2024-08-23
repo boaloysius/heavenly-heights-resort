@@ -62,6 +62,16 @@ const router = createRouter({
               name: "reservations",
               component: () => import("@/pages/Reservations.vue"),
             },
+            {
+              path: "users/",
+              name: "users",
+              component: () => import("@/pages/Profiles.vue"),
+            },
+            {
+              path: "users/:userId/bookings",
+              name: "userBookings",
+              component: () => import("@/pages/UserReservations.vue"),
+            },
           ],
         },
       ],
