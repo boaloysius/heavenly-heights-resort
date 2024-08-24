@@ -48,7 +48,7 @@ import { useProfile } from "@/features/profile//composables/useProfile";
 import { useEditProfile } from "@/features/profile//composables/useEditProfile";
 
 import { formatErrors } from "@/lib/utils";
-import Spinner from "@/ui/Spinner.vue";
+import Spinner from "@/components/Spinner.vue";
 
 const { isPending, profile } = useProfile();
 const { isEditing, editProfile } = useEditProfile();

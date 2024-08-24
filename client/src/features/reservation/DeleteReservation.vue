@@ -19,7 +19,7 @@
 <script setup>
 import { Button } from "@/components/ui/button";
 import { TrashIcon } from "@heroicons/vue/24/solid";
-import SpinnerMini from "@/ui/SpinnerMini.vue";
+import SpinnerMini from "@/components/SpinnerMini.vue";
 import { useDeleteReservation } from "./composables/useDeleteReservation";
 
 const { isDeleting, deleteReservation } = useDeleteReservation();

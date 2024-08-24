@@ -62,8 +62,10 @@ async function onSubmit(values, { setErrors }) {
   }
 }
 
-const profileAvatarURL = cld
-  .image(user.value.imagePublicId)
-  .resize(fill().width(32).height(32))
-  .toURL();
+const profileAvatarURL = user.value
+  ? cld
+      .image(user.value.imagePublicId)
+      .resize(fill().width(32).height(32))
+      .toURL()
+  : null;
 </script>

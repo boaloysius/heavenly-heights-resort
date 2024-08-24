@@ -53,7 +53,7 @@
 <script setup>
 import { UsersIcon, EyeSlashIcon, MapPinIcon } from "@heroicons/vue/24/solid";
 import { CloudinaryImage } from "@/components/cloudinary-image";
-import TextExpander from "@/ui/TextExpander.vue";
+import TextExpander from "@/components/TextExpander.vue";
 
 const { cabin } = defineProps({
   cabin: {
