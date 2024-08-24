@@ -1,12 +1,5 @@
 <template>
   <div>
-    <CloudinaryImage
-      publicId="heavenly-heights/core/bg"
-      :attrs="{
-        class: 'absolute inset-0 w-full object-cover object-top h-full',
-        alt: 'Mountains and forests with two cabins',
-      }"
-    />
     <div
       data-state="open"
       class="fixed inset-0 bg-black/30"
@@ -65,7 +58,6 @@ import {
 } from "@/components/ui/card";
 
 import RegistrationForm from "@/features/auth/RegistrationForm.vue";
-import { CloudinaryImage } from "@/components/cloudinary-image";
 
 import { formatAuthErrors } from "@/lib/utils";
 

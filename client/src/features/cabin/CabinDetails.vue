@@ -8,6 +8,8 @@
         :attrs="{
           class: 'object-cover w-full h-full',
           alt: `Cabin ${name}`,
+          width: '1500',
+          height: '1000',
         }"
       />
     </div>

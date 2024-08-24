@@ -10,8 +10,24 @@ const router = createRouter({
       children: [
         {
           path: "",
-          name: "home",
-          component: () => import("@/pages/Home.vue"),
+          component: () => import("@/layouts/HomeLayout.vue"), // Use new layout
+          children: [
+            {
+              path: "",
+              name: "home",
+              component: () => import("@/pages/Home.vue"),
+            },
+            {
+              path: "login",
+              name: "login",
+              component: () => import("@/pages/Login.vue"),
+            },
+            {
+              path: "register",
+              name: "register",
+              component: () => import("@/pages/Register.vue"),
+            },
+          ],
         },
         {
           path: "about/",
@@ -27,16 +43,6 @@ const router = createRouter({
           path: "cabins/:cabinId/",
           name: "cabin",
           component: () => import("@/pages/Cabin.vue"),
-        },
-        {
-          path: "login",
-          name: "login",
-          component: () => import("@/pages/Login.vue"),
-        },
-        {
-          path: "register",
-          name: "register",
-          component: () => import("@/pages/Register.vue"),
         },
         {
           path: "logout",

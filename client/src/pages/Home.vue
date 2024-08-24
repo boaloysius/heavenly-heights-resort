@@ -1,13 +1,5 @@
 <template>
   <main class="mt-24">
-    <CloudinaryImage
-      publicId="heavenly-heights/core/bg"
-      :attrs="{
-        class: 'absolute inset-0 w-full object-cover object-top h-full',
-        alt: 'Mountains and forests with two cabins',
-      }"
-    />
-
     <div class="relative z-10 text-center">
       <h1 class="text-8xl text-primary-50 mb-10 tracking-tight font-normal">
         Welcome to paradise.
@@ -24,5 +16,4 @@
 
 <script setup>
 import { RouterLink } from "vue-router";
-import { CloudinaryImage } from "@/components/cloudinary-image";
 </script>

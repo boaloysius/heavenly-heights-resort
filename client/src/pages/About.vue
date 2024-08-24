@@ -33,6 +33,8 @@
         :attrs="{
           class: 'object-cover',
           alt: 'Family sitting around a fire pit in front of cabin',
+          width: '600',
+          height: '600',
         }"
       />
     </div>
@@ -43,6 +45,8 @@
         :attrs="{
           class: 'object-cover',
           alt: 'Family that manages The Heavenly Heights',
+          width: '600',
+          height: '600',
         }"
       />
     </div>

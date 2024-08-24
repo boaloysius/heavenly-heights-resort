@@ -6,8 +6,8 @@
         :attrs="{
           class: 'border-r border-primary-800 object-cover w-full h-full',
           alt: `Cabin ${cabin.name}`,
-          height: '32',
-          width: '32',
+          height: '400',
+          width: '400',
         }"
       />
     </div>
