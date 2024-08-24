@@ -80,17 +80,19 @@
 </template>
 
 <script setup>
-import { computed } from "vue";
+import { computed, toRefs } from "vue";
 import { RouterLink } from "vue-router";
 import { format } from "date-fns";
 import { CloudinaryImage } from "@/components/cloudinary-image";
 
-const { profile } = defineProps({
+const props = defineProps({
   profile: {
     type: Object,
     required: true,
   },
 });
 
-const isAdminProfile = computed(() => profile.role == "admin");
+const { profile } = toRefs(props);
+
+const isAdminProfile = computed(() => profile.value.role === "admin");
 </script>

@@ -1,5 +1,5 @@
 class Cabin < ApplicationRecord
-  has_many :bookings
+  has_many :bookings, dependent: :restrict_with_error
 
   validates :maxCapacity, presence: true
   validates :regularPrice, presence: true

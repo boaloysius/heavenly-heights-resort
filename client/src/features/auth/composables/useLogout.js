@@ -1,4 +1,4 @@
-import { useMutation } from "@tanstack/vue-query";
+import { useMutation, useQueryClient } from "@tanstack/vue-query";
 import { useRouter } from "vue-router";
 import { useLocalStorage, useSessionStorage } from "@vueuse/core";
 
@@ -6,6 +6,7 @@ import { logout as logoutApi } from "@/services/apiAuth";
 import { useToast } from "@/components/toast/useToast";
 
 export function useLogout() {
+  const queryClient = useQueryClient();
   const router = useRouter();
   const { show: showToast } = useToast();
   const tokenLS = useLocalStorage("token", null);
@@ -17,6 +18,7 @@ export function useLogout() {
     mutationFn: logoutApi,
     onSuccess: () => {
       showToast("Logout successfull!");
+      queryClient.invalidateQueries();
     },
     onSettled: () => {
       tokenLS.value = null;
