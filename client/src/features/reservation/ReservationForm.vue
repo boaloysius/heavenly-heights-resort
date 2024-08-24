@@ -12,7 +12,7 @@
         className="text-lg flex flex-col flex-grow justify-between space-y-8"
       >
         <div className="max-w-xs">
-          <FormField v-slot="{ componentField, value }" name="days">
+          <FormField v-slot="{ componentField, value }" name="dates">
             <FormItem class="space-y-4 flex flex-col">
               <FormLabel>Please select dates</FormLabel>
               <FormControl class="flex flex-col">
@@ -219,7 +219,7 @@ const dateRangeSchema = z
   })
   .refine((data) => data.start && data.end, {
     message: "Date is required",
-    path: ["days"],
+    path: ["dates"],
   })
   .refine(
     ({ start, end }) => {
@@ -228,7 +228,7 @@ const dateRangeSchema = z
     },
     {
       message: `The reservation must be for at least ${booking_contants.value.MINIMUM_BOOKING_LENGTH} days.`,
-      path: ["days"],
+      path: ["dates"],
     }
   )
   .refine(
@@ -238,7 +238,7 @@ const dateRangeSchema = z
     },
     {
       message: `The reservation cannot exceed ${booking_contants.value.MAXIMUM_BOOKING_LENGTH} days.`,
-      path: ["days"],
+      path: ["dates"],
     }
   );
 
@@ -252,7 +252,7 @@ const reservationSchema = toTypedSchema(
         invalid_type_error: "Number of guests is required",
       })
     ),
-    days: dateRangeSchema,
+    dates: dateRangeSchema,
     cabin_id: z.string(),
     has_breakfast: z.boolean(),
   })

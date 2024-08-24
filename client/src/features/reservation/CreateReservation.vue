@@ -48,16 +48,16 @@ const router = useRouter();
 
 async function onSubmit(values, { setErrors }) {
   try {
-    const { days, ...otherValues } = values;
+    const { dates, ...otherValues } = values;
     const newReservation = {
       ...otherValues,
-      start_date: days.start.toString(),
-      end_date: days.end.toString(),
+      start_date: dates.start.toString(),
+      end_date: dates.end.toString(),
     };
     await createReservation(newReservation);
     router.push({ name: "reservations" });
   } catch (err) {
-    console.log(err);
+    console.log(err?.errors && formatErrors(err.errors));
     err?.errors && setErrors(formatErrors(err.errors));
   }
 }

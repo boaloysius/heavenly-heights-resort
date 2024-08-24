@@ -72,11 +72,13 @@ const router = createRouter({
               path: "users/",
               name: "users",
               component: () => import("@/pages/Profiles.vue"),
+              meta: { adminOnly: true },
             },
             {
               path: "users/:userId/bookings",
               name: "userBookings",
               component: () => import("@/pages/UserReservations.vue"),
+              meta: { adminOnly: true },
             },
           ],
         },
@@ -86,14 +88,24 @@ const router = createRouter({
 });
 
 // Route guard to check for authentication
+// Route guard to check for authentication and admin access
 router.beforeEach((to, from, next) => {
-  const { isAuthenticated } = useAuth();
+  const { isAuthenticated, isAdmin } = useAuth();
 
   if (to.matched.some((record) => record.meta.requiresAuth)) {
     if (isAuthenticated.value) {
-      next(); // Proceed to the route
+      // Check if the route requires admin access
+      if (to.matched.some((record) => record.meta.adminOnly)) {
+        if (isAdmin.value) {
+          next(); // User is an admin, proceed to the route
+        } else {
+          next({ name: "home" }); // Redirect to the home page or any appropriate page for non-admin users
+        }
+      } else {
+        next(); // Route requires authentication but not admin access, proceed
+      }
     } else {
-      next({ name: "login" }); // Redirect to the login page
+      next({ name: "login" }); // Redirect to the login page if not authenticated
     }
   } else {
     next(); // Proceed if the route doesn't require authentication

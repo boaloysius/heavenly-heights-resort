@@ -1,5 +1,6 @@
 import { clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
+import { CalendarDate, today } from "@internationalized/date";
 import * as lodash from "lodash";
 import countriesJson from "./countries.json";
 
@@ -43,3 +44,7 @@ export function formatAuthErrors(errorMessages) {
 export const countries = Object.keys(countriesJson);
 
 export const countriesMap = countriesJson;
+
+export const isDateInPast = (date) => {
+  return date.compare(today()) < 0;
+};
