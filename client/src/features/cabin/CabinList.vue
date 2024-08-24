@@ -8,7 +8,7 @@
   </div>
 </template>
 <script setup>
-import Spinner from "@/ui/Spinner.vue";
+import Spinner from "@/components/Spinner.vue";
 
 import CabinCard from "./CabinCard.vue";
 import { useCabins } from "./composables/useCabins";

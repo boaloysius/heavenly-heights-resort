@@ -8,6 +8,6 @@
 </template>
 
 <script setup>
-import Navbar from "@/ui/Navbar.vue";
-import Logo from "@/ui/Logo.vue";
+import Navbar from "@/components/Navbar.vue";
+import Logo from "@/components/Logo.vue";
 </script>

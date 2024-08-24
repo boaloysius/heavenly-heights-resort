@@ -25,7 +25,12 @@
       </Button>
     </PopoverTrigger>
     <PopoverContent class="w-auto p-0">
-      <RangeCalendar v-model="value" initial-focus :number-of-months="2" />
+      <RangeCalendar
+        v-model="value"
+        initial-focus
+        :number-of-months="2"
+        :isDateDisabled="isDateInPast"
+      />
     </PopoverContent>
   </Popover>
 </template>
@@ -46,7 +51,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import { cn } from "@/lib/utils";
+import { cn, isDateInPast } from "@/lib/utils";
 
 const props = defineProps({
   modelValue: {

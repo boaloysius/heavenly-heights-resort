@@ -30,7 +30,7 @@
 <script setup>
 import ReservationCard from "@/features/reservation/ReservationCard.vue";
 import { useReservations } from "@/features/reservation/composables/useReservations";
-import Spinner from "@/ui/Spinner.vue";
+import Spinner from "@/components/Spinner.vue";
 import { RouterLink } from "vue-router";
 import { useAuth } from "@/features/auth/composables/useAuth";
 

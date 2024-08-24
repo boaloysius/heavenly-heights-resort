@@ -19,7 +19,7 @@
 <script setup>
 import ProfileCard from "@/features/profile/ProfileCard.vue";
 import { useProfiles } from "@/features/profile/composables/useProfiles";
-import Spinner from "@/ui/Spinner.vue";
+import Spinner from "@/components/Spinner.vue";
 
 const { isPending, profiles } = useProfiles();
 </script>

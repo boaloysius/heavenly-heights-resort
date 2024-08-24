@@ -24,7 +24,7 @@ import { useQuery } from "@tanstack/vue-query";
 import { useRoute } from "vue-router";
 import { ref, watch, computed } from "vue";
 
-import Spinner from "@/ui/Spinner.vue";
+import Spinner from "@/components/Spinner.vue";
 import ReservationCard from "@/features/reservation/ReservationCard.vue";
 import { getUserReservations } from "@/services/apiProfile.js";
 

@@ -18,7 +18,7 @@ import { useRoute } from "vue-router";
 
 import { getCabin } from "@/services/apiCabins.js";
 import CabinDetails from "@/features/cabin/CabinDetails.vue";
-import Spinner from "@/ui/Spinner.vue";
+import Spinner from "@/components/Spinner.vue";
 import CreateReservation from "@/features/reservation/CreateReservation.vue";
 
 const route = useRoute();
