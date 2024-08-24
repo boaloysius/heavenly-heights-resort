@@ -55,8 +55,12 @@ module Api
 
       # DELETE /cabins/:id
       def destroy
-        @cabin.destroy
-        render json: { message: "Cabin Deleted Successfully." }
+        if @cabin.bookings.exists?
+          render json: { message: "Cannot delete cabin with existing bookings." }, status: :unprocessable_entity
+        else
+          @cabin.destroy
+          render json: { message: "Cabin deleted successfully." }, status: :ok
+        end
       end
 
       private

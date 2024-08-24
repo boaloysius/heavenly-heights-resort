@@ -9,6 +9,7 @@ export function useCabins() {
   } = useQuery({
     queryKey: ["cabins"],
     queryFn: getCabins,
+    staleTime: 300000,
   });
 
   return { isPending, cabins, error };

@@ -1,10 +1,11 @@
 <template>
   <Form
     :validationSchema="profileFormSchema"
-    :initialValues="profile"
+    :initialValues="initialValues"
     :validateOnMount="false"
-    :onSubmit="onSubmit"
+    :onSubmit="props.onSubmit"
     class="grid gap-5"
+    :key="profile"
   >
     <div class="flex flex-col gap-2">
       <FormField v-slot="{ componentField }" name="fullName">
@@ -113,7 +114,7 @@
   </Form>
 </template>
 <script setup>
-import { ref } from "vue";
+import { ref, toRefs, computed } from "vue";
 import { toTypedSchema } from "@vee-validate/zod";
 import { z } from "zod";
 
@@ -137,7 +138,7 @@ import {
 import Input from "@/components/ui/input/Input.vue";
 import { countries, countriesMap } from "@/lib/utils";
 
-const { onSubmit, profile } = defineProps({
+const props = defineProps({
   profile: {
     type: Object,
     required: true,
@@ -148,7 +149,18 @@ const { onSubmit, profile } = defineProps({
   },
 });
 
+const { profile } = toRefs(props);
+
 const submitButton = ref(null);
+
+const initialValues = computed(() => {
+  return {
+    fullName: profile.value.fullName || undefined,
+    nationalID: profile.value.nationalID || undefined,
+    country: profile.value.country || undefined,
+    email: profile.value.email || undefined,
+  };
+});
 
 const profileFormSchema = toTypedSchema(
   z
