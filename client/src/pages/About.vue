@@ -7,22 +7,23 @@
 
       <div class="space-y-8">
         <p>
-          Where natures beauty and comfortable living blend seamlessly. Hidden
-          away in the heart of the Italian Dolomites, this is your paradise away
-          from home. But it&apos;s not just about the luxury cabins. It&apos;s
-          about the experience of reconnecting with nature and enjoying simple
-          pleasures with family.
+          Escape to a place where luxury harmonizes with nature. Nestled in the
+          picturesque Italian Dolomites, our retreat offers a unique blend of
+          comfort and wilderness. This isn’t just a getaway; it’s a chance to
+          immerse yourself in the beauty of the natural world and rediscover
+          life's simple joys.
         </p>
         <p>
-          Our {{ numCabins }} luxury cabins provide a cozy base, but the real
-          freedom and peace you&apos;ll find in the surrounding mountains.
-          Wander through lush forests, breathe in the fresh air, and watch the
-          stars twinkle above from the warmth of a campfire or your hot tub.
+          Our elegantly designed cabins serve as your cozy sanctuary, inviting
+          you to relax and rejuvenate. Step outside to explore enchanting forest
+          trails, breathe in the fresh mountain air, and marvel at the starry
+          night sky from the warmth of a crackling campfire or your private hot
+          tub.
         </p>
         <p>
-          This is where memorable moments are made, surrounded by nature&apos;s
-          splendor. It&apos;s a place to slow down, relax, and feel the joy of
-          being together in a beautiful setting.
+          Here, every day is an adventure, and every evening is a chance to
+          unwind in serene surroundings. It’s a place to slow down, reconnect,
+          and create unforgettable memories with those who matter most.
         </p>
       </div>
     </div>
@@ -58,18 +59,19 @@
 
       <div class="space-y-8">
         <p>
-          Since 1962, The Heavenly Heights has been a cherished family-run
-          retreat. Started by our grandparents, this haven has been nurtured
-          with love and care, passing down through our family as a testament to
-          our dedication to creating a warm, welcoming environment.
+          Since 1991, The Heavenly Heights has been more than just a
+          retreat—it’s been a labor of love passed down through generations.
+          Founded by our grandparents, this sanctuary has thrived under the
+          tender care of our family, who have poured their hearts into creating
+          a place that feels like home.
         </p>
         <p>
-          Over the years, we&apos;ve maintained the essence of The Heavenly
-          Heights, blending the timeless beauty of the mountains with the
-          personal touch only a family business can offer. Here, you&apos;re not
-          just a guest; you&apos;re part of our extended family. So join us at
-          The Heavenly Heights soon, where tradition meets tranquility, and
-          every visit is like coming home.
+          We’ve held onto the magic that makes The Heavenly Heights special,
+          combining the timeless allure of the mountains with the warmth and
+          charm that only a family-run business can provide. When you stay with
+          us, you’re more than a guest; you become part of our story. Visit us
+          at The Heavenly Heights, where tradition, peace, and a sense of
+          belonging await you.
         </p>
 
         <div>
@@ -88,7 +90,4 @@
 <script setup>
 import { RouterLink } from "vue-router";
 import { CloudinaryImage } from "@/components/cloudinary-image";
-
-// TODO make numCabins dynamic
-const numCabins = 10;
 </script>

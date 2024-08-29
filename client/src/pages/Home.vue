@@ -2,7 +2,7 @@
   <main class="mt-24">
     <div class="relative z-10 text-center">
       <h1 class="text-8xl text-primary-50 mb-10 tracking-tight font-normal">
-        Welcome to paradise.
+        Welcome to heaven.
       </h1>
       <RouterLink
         to="/cabins"
