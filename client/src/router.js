@@ -87,7 +87,6 @@ const router = createRouter({
   ],
 });
 
-// Route guard to check for authentication
 // Route guard to check for authentication and admin access
 router.beforeEach((to, from, next) => {
   const { isAuthenticated, isAdmin } = useAuth();
@@ -110,6 +109,16 @@ router.beforeEach((to, from, next) => {
   } else {
     next(); // Proceed if the route doesn't require authentication
   }
+});
+
+// Set the document title before each route
+router.beforeEach((to, from, next) => {
+  const defaultTitle = "HH"; // Default title prefix
+  const capitalize = (s) => s.charAt(0).toUpperCase() + s.slice(1);
+  document.title = to.name
+    ? `${defaultTitle} | ${capitalize(to.name)}`
+    : defaultTitle;
+  next();
 });
 
 export default router;

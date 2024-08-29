@@ -35,6 +35,8 @@
                     reservation.status == 'confirmed',
                   'bg-yellow-800 text-yellow-200':
                     reservation.status == 'checkedin',
+                  'bg-orange-800 text-orange-200':
+                    reservation.status == 'checkedout',
                 }
               )
             "

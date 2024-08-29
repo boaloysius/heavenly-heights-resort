@@ -2,12 +2,12 @@
   <div>
     <h1 class="text-4xl mb-5 text-accent-400 font-medium">Our Luxury Cabins</h1>
     <p class="text-primary-200 text-lg mb-10">
-      Cozy yet luxurious cabins, located right in the heart of the Italian
-      Dolomites. Imagine waking up to beautiful mountain views, spending your
-      days exploring the dark forests around, or just relaxing in your private
-      hot tub under the stars. Enjoy nature&apos;s beauty in your own little
-      home away from home. The perfect spot for a peaceful, calm vacation.
-      Welcome to paradise.
+      Experience the perfect blend of comfort and luxury in our cabins nestled
+      in the heart of the Italian Dolomites. Wake up to breathtaking mountain
+      vistas, spend your days wandering through serene forests, or unwind in
+      your private hot tub beneath a canopy of stars. Immerse yourself in
+      nature’s splendor in your own secluded retreat. It's the ideal destination
+      for a tranquil, rejuvenating getaway. Welcome to your paradise.
     </p>
 
     <div class="flex flex-col gap-4">
