@@ -15,7 +15,7 @@ admin_user = User.create!(
 )
 
 # Create a client user
-client_user = User.create!(
+client_user1 = User.create!(
   email: 'client-1@gmail.com',
   password: 'Password@123',
   role: 'client',
@@ -28,11 +28,39 @@ client_user = User.create!(
   }
 )
 
+client_user2 = User.create!(
+  email: 'client-2@gmail.com',
+  password: 'Password@123',
+  role: 'client',
+  profile_attributes: {
+    fullName: 'client two',
+    country: 'India',
+    nationalID: 'qwezd123',
+    imagePublicId: "client-2",
+    imageUrl: "https://res.cloudinary.com/dudulqvif/image/upload/v1724929652/client-2"
+  }
+)
+
+client_user3 = User.create!(
+  email: 'client-3@gmail.com',
+  password: 'Password@123',
+  role: 'client',
+  profile_attributes: {
+    fullName: 'client three',
+    country: 'India',
+    nationalID: 'qwezd123',
+    imagePublicId: "client-3",
+    imageUrl: "https://res.cloudinary.com/dudulqvif/image/upload/v1724929651/client-3"
+  }
+)
+
 puts "Created admin user: #{admin_user.email}" if admin_user.persisted?
-puts "Created client user: #{client_user.email}" if client_user.persisted?
+puts "Created client user 1: #{client_user1.email}" if client_user1.persisted?
+puts "Created client user 2: #{client_user2.email}" if client_user2.persisted?
+puts "Created client user 3: #{client_user3.email}" if client_user3.persisted?
 
 8.times do |i|
-  max_capacity = Faker::Number.between(from: 1, to: 8)
+  max_capacity = Faker::Number.between(from: 3, to: 8)
 
   # Calculate price based on capacity with a range from 100 to 3000
   min_price = 100
@@ -81,5 +109,117 @@ puts "Created client user: #{client_user.email}" if client_user.persisted?
   else
     puts "Failed to create cabin #{cabin.name}: #{cabin.errors.full_messages.join(', ')}"
   end
+end
 
+# Create bookings
+
+booking_details = [
+  { 
+    start_date: "2024-08-01", 
+    end_date: "2024-08-06", 
+    num_guests: Cabin.first.maxCapacity - 1, 
+    cabin_id: Cabin.first.id,
+    observations: "Requesting early check-in.", 
+    is_paid: true, 
+    status: "checkout", 
+    user_id: client_user1.id,
+    has_breakfast: true
+  },
+  { 
+    start_date: "2024-08-07", 
+    end_date: "2024-08-10", 
+    num_guests: Cabin.first.maxCapacity - 1, 
+    cabin_id: Cabin.first.id,
+    observations: "Requesting early check-in.", 
+    is_paid: true, 
+    status: "checkout", 
+    user_id: client_user1.id,
+    has_breakfast: false
+  },
+  { 
+    start_date: "2024-08-01", 
+    end_date: "2024-08-06", 
+    num_guests: Cabin.second.maxCapacity - 1, 
+    cabin_id: Cabin.second.id,
+    observations: "Requesting early check-in.", 
+    is_paid: false, 
+    status: "booked", 
+    user_id: client_user2.id,
+    has_breakfast: true
+  },
+  { 
+    start_date: "2024-08-07", 
+    end_date: "2024-08-10", 
+    num_guests: Cabin.second.maxCapacity - 1, 
+    cabin_id: Cabin.second.id,
+    observations: "Requesting early check-in.", 
+    is_paid: false, 
+    status: "confirmed", 
+    user_id: client_user2.id,
+    has_breakfast: false
+  },    
+  { 
+    start_date: "2024-10-01", 
+    end_date: "2024-10-05", 
+    num_guests: Cabin.first.maxCapacity - 1, 
+    cabin_id: Cabin.first.id,
+    observations: "Requesting early check-in.", 
+    is_paid: false, 
+    status: "booked", 
+    user_id: client_user1.id,
+    has_breakfast: true
+  },
+  { 
+    start_date: "2024-10-01", 
+    end_date: "2024-10-02", 
+    num_guests: Cabin.second.maxCapacity - 1, 
+    cabin_id: Cabin.second.id,
+    observations: "Requesting early check-in.", 
+    is_paid: true, 
+    status: "confirmed", 
+    user_id: client_user2.id,
+    has_breakfast: true
+  },    
+  { 
+    start_date: "2024-11-01", 
+    end_date: "2024-11-04", 
+    num_guests: Cabin.first.maxCapacity - 1, 
+    cabin_id: Cabin.first.id,
+    observations: "Requesting early check-in.", 
+    is_paid: false, 
+    status: "booked", 
+    user_id: client_user1.id,
+    has_breakfast: true
+  },
+  { 
+    start_date: "2024-11-01", 
+    end_date: "2024-11-03", 
+    num_guests: Cabin.second.maxCapacity - 1, 
+    cabin_id: Cabin.second.id,
+    observations: "Requesting early check-in.", 
+    is_paid: true, 
+    status: "confirmed", 
+    user_id: client_user2.id,
+    has_breakfast: true
+  }
+]
+
+booking_details.each do |details|
+  booking = Booking.create(
+    start_date: details[:start_date],
+    end_date: details[:end_date],
+    num_guests: details[:num_guests],
+    observations: details[:observations],
+    is_paid: details[:is_paid],
+    status: details[:status],
+    has_breakfast: details[:has_breakfast],
+    cabin_id: details[:cabin_id],
+    user_id: details[:user_id]
+  )
+
+  if booking.save
+    puts "Created booking for user #{booking.user_id} in cabin #{booking.cabin_id}"
+  else
+    puts "Failed to create booking for user #{details[:user_id]}: #{booking.errors.full_messages.join(', ')}"
+  end
 end
