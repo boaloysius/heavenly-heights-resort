@@ -2,6 +2,7 @@
 module Api
   module V1
     class BookingsController < ApiController
+      include Pagy::Backend  
       include BookingConstants  # Include the module here
 
       before_action :authenticate_user!
@@ -12,7 +13,7 @@ module Api
       def index
         
         @bookings = Booking.accessible_by(current_ability).order(created_at: :desc)
-        
+
         if params[:status].present? && STATUSES.include?(params[:status])
           @bookings = @bookings.where(status: params[:status])
         end
@@ -22,11 +23,13 @@ module Api
           @bookings = @bookings.where(is_paid: is_paid)
         end
 
+        @pagy, @bookings = pagy(@bookings, limit: 10)
+
         booking_data = @bookings.map do |booking|
           BookingSerializer.new(booking).serializable_hash[:data][:attributes]
         end
 
-        render json: { data: booking_data }
+        render json: { data: booking_data, pagy: pagy_metadata(@pagy) }
       end
 
       # GET /bookings/:id

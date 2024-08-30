@@ -27,14 +27,24 @@
             width="160px"
           />
         </div>
+
         <ReservationCard
-          v-for="reservation in reservations"
+          v-for="reservation in reservations.data"
           :key="reservation.id"
           :reservation="reservation"
         />
+        <div class="flex justify-center mt-4">
+          <Pagination
+            v-if="isShowPagination"
+            v-model="selectedPage"
+            :total="total"
+            :itemsPerPage="itemsPerPage"
+            :siblingCount="3"
+          />
+        </div>
       </ul>
 
-      <p v-if="!isPending && !reservations.length" className="text-lg">
+      <p v-if="!isPending && !reservations.data.length" className="text-lg">
         You have no reservations yet. Check out our{{ " " }}
         <RouterLink className="underline text-accent-500" to="/cabins">
           luxury cabins &rarr;
@@ -44,8 +54,9 @@
   </div>
 </template>
 <script setup>
-import { ref, watch } from "vue";
+import { ref, watch, computed } from "vue";
 import Select from "@/components/StyledSelect.vue";
+import Pagination from "@/components/StyledPagination.vue";
 import ReservationCard from "@/features/reservation/ReservationCard.vue";
 import { useReservations } from "@/features/reservation/composables/useReservations";
 import Spinner from "@/components/Spinner.vue";
@@ -54,7 +65,7 @@ import { useAuth } from "@/features/auth/composables/useAuth";
 import { useUrlSearchParams } from "@vueuse/core";
 
 const searchParams = useUrlSearchParams("history", {
-  initialValue: { status: "all", paid: "all" },
+  initialValue: { status: "all", paid: "all", page: 1 },
 });
 
 const { isPending, reservations } = useReservations(searchParams);
@@ -62,6 +73,7 @@ const { isAdmin } = useAuth();
 
 const selectedStatus = ref(searchParams?.status || "all");
 const selectedPaid = ref(searchParams?.paid || "all");
+const selectedPage = ref(parseInt(searchParams?.page) || 1);
 const statusOptions = ref([
   {
     label: "All",
@@ -103,6 +115,25 @@ function updateSearchTerm(key, value) {
   searchParams[key] = value;
 }
 
-watch(selectedStatus, (newStatus) => updateSearchTerm("status", newStatus));
-watch(selectedPaid, (newPaid) => updateSearchTerm("paid", newPaid));
+watch(selectedStatus, (newStatus) => {
+  updateSearchTerm("status", newStatus);
+  updateSearchTerm("page", 1);
+});
+watch(selectedPaid, (newPaid) => {
+  updateSearchTerm("paid", newPaid);
+  updateSearchTerm("page", 1);
+});
+
+watch(selectedPage, (newPage) => updateSearchTerm("page", newPage));
+
+watch(searchParams, (newParam) => {
+  selectedPage.value = newParam.page;
+});
+
+const itemsPerPage = computed(() => reservations.value?.pagy.limit || 1);
+const total = computed(() => reservations.value?.pagy.count || 1);
+
+const isShowPagination = computed(
+  () => reservations.value?.data.length > 0 && total.value > itemsPerPage.value
+);
 </script>

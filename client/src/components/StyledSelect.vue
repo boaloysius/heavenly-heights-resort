@@ -9,7 +9,7 @@
       class="focus:ring-2"
     >
       <SelectTrigger
-        :class="`w-[${width}] bg-accent-700 rounded-sm text-lg text-primary-100 border-none p-4`"
+        :class="`w-[${width}] bg-accent-600 rounded-sm text-lg text-primary-100 border-none p-4`"
       >
         <SelectValue :placeholder="placeholder" />
       </SelectTrigger>
