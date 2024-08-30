@@ -116,7 +116,7 @@ router.beforeEach((to, from, next) => {
   const defaultTitle = "HH"; // Default title prefix
   const capitalize = (s) => s.charAt(0).toUpperCase() + s.slice(1);
   document.title = to.name
-    ? `${defaultTitle} | ${capitalize(to.name)}`
+    ? `${capitalize(to.name)} | ${defaultTitle}`
     : defaultTitle;
   next();
 });

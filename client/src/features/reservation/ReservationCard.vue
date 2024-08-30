@@ -20,10 +20,17 @@
 
         <div class="flex gap-2">
           <span
-            v-if="reservation.is_paid"
-            class="bg-green-800 text-green-200 h-7 px-3 uppercase text-xs font-bold flex items-center rounded-sm"
+            :class="
+              cn(
+                'h-7 px-3 uppercase text-xs font-bold flex items-center rounded-sm',
+                {
+                  'bg-green-800 text-green-200': reservation.is_paid,
+                  'bg-gray-200 text-gray-800': !reservation.is_paid,
+                }
+              )
+            "
           >
-            Paid
+            {{ reservation.is_paid ? "Paid" : "Pending payment" }}
           </span>
           <span
             :class="
@@ -59,7 +66,7 @@
         </div>
       </div>
 
-      <p class="text-lg text-primary-300">
+      <p class="text-lg text-primary-300 mt-2">
         {{ format(new Date(reservation.start_date), "EEE, MMM dd yyyy") }} (
         {{
           isToday(new Date(reservation.start_date))
