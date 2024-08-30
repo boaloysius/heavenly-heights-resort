@@ -1,9 +1,10 @@
 import rails from "@/axios/rails";
 const RESERVATIONS_PATH = "/api/v1/bookings";
 
-export async function getReservations() {
+export async function getReservations({ filter }) {
+  console.log(filter);
   const url = RESERVATIONS_PATH;
-  const { data } = await rails.get(url);
+  const { data } = await rails.get(url, { params: filter });
   return data;
 }
 

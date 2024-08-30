@@ -1,16 +1,31 @@
+# app/controllers/api/v1/bookings_controller.rb
 module Api
   module V1
     class BookingsController < ApiController
+      include BookingConstants  # Include the module here
+
       before_action :authenticate_user!
       before_action :set_booking, only: [:show, :update, :destroy]
       load_and_authorize_resource
 
       # GET /bookings
       def index
+        
         @bookings = Booking.accessible_by(current_ability).order(created_at: :desc)
+        
+        if params[:status].present? && STATUSES.include?(params[:status])
+          @bookings = @bookings.where(status: params[:status])
+        end
+
+        if params[:is_paid].present?
+          is_paid = ActiveRecord::Type::Boolean.new.cast(params[:is_paid])
+          @bookings = @bookings.where(is_paid: is_paid)
+        end
+
         booking_data = @bookings.map do |booking|
           BookingSerializer.new(booking).serializable_hash[:data][:attributes]
         end
+
         render json: { data: booking_data }
       end
 
@@ -26,7 +41,7 @@ module Api
         if @booking.save
           render json: { data: BookingSerializer.new(@booking).serializable_hash[:data][:attributes] }, status: :created
         else
-          render json: {errors: @booking.errors}, status: :unprocessable_entity
+          render json: { errors: @booking.errors }, status: :unprocessable_entity
         end
       end
 
@@ -36,7 +51,7 @@ module Api
         if @booking.update(params_to_use)
           render json: { data: BookingSerializer.new(@booking).serializable_hash[:data][:attributes] }
         else
-          render json: {errors: @booking.errors}, status: :unprocessable_entity
+          render json: { errors: @booking.errors }, status: :unprocessable_entity
         end
       end
 

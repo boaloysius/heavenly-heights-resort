@@ -121,7 +121,7 @@ booking_details = [
     cabin_id: Cabin.first.id,
     observations: "Requesting early check-in.", 
     is_paid: true, 
-    status: "checkout", 
+    status: "checkedout", 
     user_id: client_user1.id,
     has_breakfast: true
   },
@@ -132,7 +132,7 @@ booking_details = [
     cabin_id: Cabin.first.id,
     observations: "Requesting early check-in.", 
     is_paid: true, 
-    status: "checkout", 
+    status: "checkedout", 
     user_id: client_user1.id,
     has_breakfast: false
   },
