@@ -7,10 +7,10 @@ export async function getProfile() {
   return data;
 }
 
-export async function getProfiles() {
+export async function getProfiles({ filter, page }) {
   const url = `${PROFILE_PATH}/all`;
-  const { data } = await rails.get(url);
-  return data;
+  const { data, pagy } = await rails.get(url, { params: { ...filter, page } });
+  return { data, pagy };
 }
 
 export async function editProfile(newProfile) {

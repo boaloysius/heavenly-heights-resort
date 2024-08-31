@@ -264,4 +264,10 @@ module ProfileConcern
   def flag_for_country(country_name)
     COUNTRY_FLAGS[country_name]
   end
+
+  ADMIN_ROLE = 'admin'
+  CLIENT_ROLE = 'client'
+
+  # Define an array of all possible roles
+  ROLES = [ADMIN_ROLE, CLIENT_ROLE].freeze  
 end

@@ -10,7 +10,7 @@ module BookingConstants
   BOOKED_STATUS = 'booked'
   CONFIRMED_STATUS = 'confirmed'
   CHECKEDIN_STATUS = 'checkedin'
-  CHECKEDOUT_STATUS = 'checkout'
+  CHECKEDOUT_STATUS = 'checkedout'
 
   # Define an array of all possible statuses
   STATUSES = [BOOKED_STATUS, CONFIRMED_STATUS, CHECKEDIN_STATUS, CHECKEDOUT_STATUS].freeze
