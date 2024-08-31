@@ -9,10 +9,10 @@ export function useReservations(searchParams) {
   // Filter
   const filter = computed(() => {
     const obj = {};
-    if (status.value && status.value !== "all") {
+    if (status?.value && status.value !== "all") {
       obj.status = status.value;
     }
-    if (paid.value && paid.value !== "all") {
+    if (paid?.value && paid.value !== "all") {
       obj.is_paid = paid.value;
     }
     return obj;
@@ -20,7 +20,7 @@ export function useReservations(searchParams) {
 
   // Pagination
   const page = computed(() =>
-    !pageNumber.value ? 1 : Number(pageNumber.value)
+    !pageNumber?.value ? 1 : Number(pageNumber.value)
   );
 
   const {

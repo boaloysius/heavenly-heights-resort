@@ -3,7 +3,7 @@ module Api
   module V1
     class BookingsController < ApiController
       include Pagy::Backend  
-      include BookingConstants  # Include the module here
+      include BookingConstants
 
       before_action :authenticate_user!
       before_action :set_booking, only: [:show, :update, :destroy]

@@ -1,8 +1,26 @@
 <template>
   <div class="flex flex-col">
-    <h2 className="font-semibold text-2xl text-accent-400 mb-7">
-      Your reservations
-    </h2>
+    <div class="flex justify-between align-baseline mb-7">
+      <h2 className="font-semibold text-2xl text-accent-400">
+        {{ isAdmin ? "Platform Reservations" : "Your reservations" }}
+      </h2>
+      <div class="flex justify-end gap-4">
+        <Select
+          v-model="selectedStatus"
+          :options="statusOptions"
+          placeholder="Select a status"
+          label="Status"
+          width="160px"
+        />
+        <Select
+          v-model="selectedPaid"
+          :options="paidOptions"
+          placeholder="Payment"
+          label="Payment"
+          width="160px"
+        />
+      </div>
+    </div>
     <div v-if="isAdmin" class="py-2 px-4 bg-accent-600 rounded-sm mb-4">
       As admin, you see all user reservations.
     </div>
@@ -11,23 +29,6 @@
     </div>
     <div v-else>
       <ul className="space-y-6">
-        <div class="my-4 flex justify-end gap-4">
-          <Select
-            v-model="selectedStatus"
-            :options="statusOptions"
-            placeholder="Select a status"
-            label="Status"
-            width="160px"
-          />
-          <Select
-            v-model="selectedPaid"
-            :options="paidOptions"
-            placeholder="Payment"
-            label="Payment"
-            width="160px"
-          />
-        </div>
-
         <ReservationCard
           v-for="reservation in reservations.data"
           :key="reservation.id"
