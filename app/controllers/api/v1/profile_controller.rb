@@ -24,26 +24,26 @@ module Api
       end
 
       def all
-        profiles = Profile.all.order(created_at: :desc)
-
+        profiles = Profile.includes(:user).order(created_at: :desc)
+      
         if params[:role].present? && ROLES.include?(params[:role])
           profiles = profiles.joins(:user).where(users: { role: params[:role] })
         end
 
         @pagy, profiles = pagy(profiles, limit: 10)
-
+        
         profiles_data = profiles.map do |profile|
           ProfileSerializer.new(profile).serializable_hash[:data][:attributes]
         end
-        
+      
         render json: { data: profiles_data, pagy: pagy_metadata(@pagy) }
-      end            
+      end    
 
       def bookings
         profile = Profile.find_by(user_id: params[:user_id])
         if profile
           authorize! :bookings, profile
-          bookings = profile.user.bookings
+          bookings = profile.user.bookings.includes(user: :profile, cabin: {})
           booking_data = bookings.map do |booking|
             BookingSerializer.new(booking).serializable_hash[:data][:attributes]
           end

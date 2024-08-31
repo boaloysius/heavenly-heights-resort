@@ -9,28 +9,29 @@ module Api
       before_action :set_booking, only: [:show, :update, :destroy]
       load_and_authorize_resource
 
-      # GET /bookings
       def index
-        
-        @bookings = Booking.accessible_by(current_ability).order(created_at: :desc)
-
+        @bookings = Booking.accessible_by(current_ability)
+                           .includes(user: :profile, cabin: {})
+                           .order(created_at: :desc)
+      
         if params[:status].present? && STATUSES.include?(params[:status])
           @bookings = @bookings.where(status: params[:status])
         end
-
+      
         if params[:is_paid].present?
           is_paid = ActiveRecord::Type::Boolean.new.cast(params[:is_paid])
           @bookings = @bookings.where(is_paid: is_paid)
         end
-
+      
         @pagy, @bookings = pagy(@bookings, limit: 10)
-
+      
         booking_data = @bookings.map do |booking|
           BookingSerializer.new(booking).serializable_hash[:data][:attributes]
         end
-
+      
         render json: { data: booking_data, pagy: pagy_metadata(@pagy) }
       end
+      
 
       # GET /bookings/:id
       def show
