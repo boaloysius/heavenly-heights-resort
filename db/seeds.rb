@@ -71,9 +71,9 @@ puts "Created client user 3: #{client_user3.email}" if client_user3.persisted?
   regular_price = [regular_price, max_price].min  # Ensure price does not exceed max_price
 
   # Generate image data
-  image_public_id = format('cabin-%03d', i + 1)
-  image_url = format('https://res.cloudinary.com/dudulqvif/image/upload/v1724170157/cabin-%03d', i + 1)
-
+  image_public_id = format('cabin-%03d-1', i + 1)
+  image_url = format('https://res.cloudinary.com/dudulqvif/image/upload/v1725282060/cabin-%03d', i + 1)
+  
   # Define cabin descriptions
   descriptions = [
     "Cabin 001 is a serene and charming retreat that offers a perfect escape into nature's embrace. Nestled amidst lush greenery, this cozy cabin provides stunning, uninterrupted mountain views that create a peaceful and enchanting atmosphere. The interior is thoughtfully designed to ensure maximum comfort and relaxation. It features a luxurious queen-sized bed with high-quality linens, ideal for a restful night after a day of exploring the beautiful surroundings. The cabin includes a well-equipped kitchenette with essential appliances such as a compact refrigerator, microwave, and coffee maker, making it convenient to prepare simple meals or enjoy a hot drink.",
