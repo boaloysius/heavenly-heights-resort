@@ -30,7 +30,7 @@
 
     <div class="col-span-2 relative aspect-square">
       <CloudinaryImage
-        publicId="heavenly-heights/core/about-1"
+        publicId="heavenly-heights/core/common/about-1"
         :attrs="{
           class: 'object-cover',
           alt: 'Family sitting around a fire pit in front of cabin',
@@ -42,7 +42,7 @@
 
     <div class="col-span-2 relative aspect-square">
       <CloudinaryImage
-        publicId="heavenly-heights/core/about-2"
+        publicId="heavenly-heights/core/common/about-2"
         :attrs="{
           class: 'object-cover',
           alt: 'Family that manages The Heavenly Heights',

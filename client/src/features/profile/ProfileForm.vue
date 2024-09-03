@@ -185,13 +185,13 @@ const profileFormSchema = toTypedSchema(
     .refine(
       (data) => {
         if (!data.imageFile) return true;
-        return ["image/jpeg", "image/png", "image/gif"].includes(
+        return ["image/jpg", "image/jpeg", "image/png", "image/avif"].includes(
           data.imageFile.type
         );
       },
       {
         message:
-          "Invalid file type. Only JPEG, PNG, and GIF images are allowed.",
+          "Invalid file type. Only JPG, JPEG, AVIF and PNG images are allowed.",
         path: ["imageFile"],
       }
     )

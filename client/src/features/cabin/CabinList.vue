@@ -17,11 +17,7 @@
       </ToggleGroup>
     </div>
     <div class="grid sm:grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 xl:gap-14">
-      <CabinCard
-        v-for="cabin of filteredCabins"
-        :cabin="cabin"
-        :key="cabin.id"
-      />
+      <CabinCard v-for="cabin of filteredCabins" :cabin="cabin" :key="cabin" />
     </div>
   </div>
 </template>

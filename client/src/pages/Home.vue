@@ -1,8 +1,10 @@
 <template>
-  <main class="mt-24">
-    <div class="relative z-10 text-center">
-      <h1 class="text-8xl text-primary-50 mb-10 tracking-tight font-normal">
-        Welcome to heaven.
+  <main class="mt-48">
+    <div class="relative z-10 flex flex-col justify-center items-center">
+      <h1
+        class="text-8xl text-primary-50 bg-primary-900 bg-opacity-30 mb-10 tracking-tight font-normal p-4"
+      >
+        Heavenly heights
       </h1>
       <RouterLink
         to="/cabins"
