@@ -1,7 +1,7 @@
 require 'faker'
 
 # Create an admin user
-admin_user = User.create!(
+admin = {  
   email: 'admin-1@gmail.com',
   password: 'Password@123',
   role: 'admin',
@@ -12,55 +12,176 @@ admin_user = User.create!(
     imagePublicId: "admin-1",
     imageUrl: "https://res.cloudinary.com/dudulqvif/image/upload/v1724264719/admin-1"    
   }
-)
+}
 
-# Create a client user
-client_user1 = User.create!(
-  email: 'client-1@gmail.com',
-  password: 'Password@123',
-  role: 'client',
-  profile_attributes: {
-    fullName: 'client one',
-    country: 'India',
-    nationalID: 'qwezd123',
-    imagePublicId: "client-1",
-    imageUrl: "https://res.cloudinary.com/dudulqvif/image/upload/v1724264719/client-1"
+puts "Users successfully created!" if User.create!(admin)
+
+clients = [
+  {
+    email: 'client-1@gmail.com',
+    password: 'Password@123',
+    role: 'client',
+    profile_attributes: {
+      fullName: 'client one',
+      country: 'India',
+      nationalID: 'qwezd123',
+      imagePublicId: 'client-1',
+      imageUrl: 'https://res.cloudinary.com/dudulqvif/image/upload/v1724264719/client-1'
+    }
+  },
+  {
+    email: 'client-2@gmail.com',
+    password: 'Password@123',
+    role: 'client',
+    profile_attributes: {
+      fullName: 'client two',
+      country: 'India',
+      nationalID: 'qwezd123',
+      imagePublicId: 'client-2',
+      imageUrl: 'https://res.cloudinary.com/dudulqvif/image/upload/v1724929652/client-2'
+    }
+  },
+  {
+    email: 'client-3@gmail.com',
+    password: 'Password@123',
+    role: 'client',
+    profile_attributes: {
+      fullName: 'client three',
+      country: 'India',
+      nationalID: 'qwezd123',
+      imagePublicId: 'client-3',
+      imageUrl: 'https://res.cloudinary.com/dudulqvif/image/upload/v1724929651/client-3'
+    }
+  },
+  {
+    email: 'client-4@gmail.com',
+    password: 'Password@123',
+    role: 'client',
+    profile_attributes: {
+      fullName: 'client four',
+      country: 'India',
+      nationalID: 'qwezd123'
+    }
+  },
+  {
+    email: 'client-5@gmail.com',
+    password: 'Password@123',
+    role: 'client',
+    profile_attributes: {
+      fullName: 'client five',
+      country: 'India',
+      nationalID: 'qwezd123'
+    }
+  },
+  {
+    email: 'client-6@gmail.com',
+    password: 'Password@123',
+    role: 'client',
+    profile_attributes: {
+      fullName: 'client six',
+      country: 'India',
+      nationalID: 'qwezd123'
+    }
+  },
+  {
+    email: 'client-7@gmail.com',
+    password: 'Password@123',
+    role: 'client',
+    profile_attributes: {
+      fullName: 'client seven',
+      country: 'India',
+      nationalID: 'qwezd123'
+    }
+  },
+  {
+    email: 'client-8@gmail.com',
+    password: 'Password@123',
+    role: 'client',
+    profile_attributes: {
+      fullName: 'client eight',
+      country: 'India',
+      nationalID: 'qwezd123'
+    }
+  },
+  {
+    email: 'client-9@gmail.com',
+    password: 'Password@123',
+    role: 'client',
+    profile_attributes: {
+      fullName: 'client nine',
+      country: 'India',
+      nationalID: 'qwezd123'
+    }
+  },
+  {
+    email: 'client-10@gmail.com',
+    password: 'Password@123',
+    role: 'client',
+    profile_attributes: {
+      fullName: 'client ten',
+      country: 'India',
+      nationalID: 'qwezd123'
+    }
+  },
+  {
+    email: 'client-11@gmail.com',
+    password: 'Password@123',
+    role: 'client',
+    profile_attributes: {
+      fullName: 'client eleven',
+      country: 'India',
+      nationalID: 'qwezd123'
+    }
+  },
+  {
+    email: 'client-12@gmail.com',
+    password: 'Password@123',
+    role: 'client',
+    profile_attributes: {
+      fullName: 'client twelve',
+      country: 'India',
+      nationalID: 'qwezd123'
+    }
+  },
+  {
+    email: 'client-13@gmail.com',
+    password: 'Password@123',
+    role: 'client',
+    profile_attributes: {
+      fullName: 'client thirteen',
+      country: 'India',
+      nationalID: 'qwezd123'
+    }
+  },
+  {
+    email: 'client-14@gmail.com',
+    password: 'Password@123',
+    role: 'client',
+    profile_attributes: {
+      fullName: 'client fourteen',
+      country: 'India',
+      nationalID: 'qwezd123'
+    }
+  },
+  {
+    email: 'client-15@gmail.com',
+    password: 'Password@123',
+    role: 'client',
+    profile_attributes: {
+      fullName: 'client fifteen',
+      country: 'India',
+      nationalID: 'qwezd123'
+    }
   }
-)
+]
 
-client_user2 = User.create!(
-  email: 'client-2@gmail.com',
-  password: 'Password@123',
-  role: 'client',
-  profile_attributes: {
-    fullName: 'client two',
-    country: 'India',
-    nationalID: 'qwezd123',
-    imagePublicId: "client-2",
-    imageUrl: "https://res.cloudinary.com/dudulqvif/image/upload/v1724929652/client-2"
-  }
-)
-
-client_user3 = User.create!(
-  email: 'client-3@gmail.com',
-  password: 'Password@123',
-  role: 'client',
-  profile_attributes: {
-    fullName: 'client three',
-    country: 'India',
-    nationalID: 'qwezd123',
-    imagePublicId: "client-3",
-    imageUrl: "https://res.cloudinary.com/dudulqvif/image/upload/v1724929651/client-3"
-  }
-)
-
-puts "Created admin user: #{admin_user.email}" if admin_user.persisted?
-puts "Created client user 1: #{client_user1.email}" if client_user1.persisted?
-puts "Created client user 2: #{client_user2.email}" if client_user2.persisted?
-puts "Created client user 3: #{client_user3.email}" if client_user3.persisted?
+clients.each do |client|
+  user = User.create!(client)
+  puts "Client with email #{user.email} successfully created!" if user.persisted?
+end
 
 8.times do |i|
-  max_capacity = Faker::Number.between(from: 3, to: 8)
+  max_capacity = Faker::Number.between(from: 3, to: 12)
 
   # Calculate price based on capacity with a range from 100 to 3000
   min_price = 100
@@ -111,97 +232,41 @@ puts "Created client user 3: #{client_user3.email}" if client_user3.persisted?
   end
 end
 
+clientUsers = User.where(role:"client")
+
 # Create bookings
 
 booking_details = [
-  { 
-    start_date: "2024-08-01", 
-    end_date: "2024-08-06", 
-    num_guests: Cabin.first.maxCapacity - 1, 
-    cabin_id: Cabin.first.id,
-    observations: "Requesting early check-in.", 
-    is_paid: true, 
-    status: "checkedout", 
-    user_id: client_user1.id,
-    has_breakfast: true
-  },
-  { 
-    start_date: "2024-08-07", 
-    end_date: "2024-08-10", 
-    num_guests: Cabin.first.maxCapacity - 1, 
-    cabin_id: Cabin.first.id,
-    observations: "Requesting early check-in.", 
-    is_paid: true, 
-    status: "checkedout", 
-    user_id: client_user1.id,
-    has_breakfast: false
-  },
-  { 
-    start_date: "2024-08-01", 
-    end_date: "2024-08-06", 
-    num_guests: Cabin.second.maxCapacity - 1, 
-    cabin_id: Cabin.second.id,
-    observations: "Requesting early check-in.", 
-    is_paid: false, 
-    status: "booked", 
-    user_id: client_user2.id,
-    has_breakfast: true
-  },
-  { 
-    start_date: "2024-08-07", 
-    end_date: "2024-08-10", 
-    num_guests: Cabin.second.maxCapacity - 1, 
-    cabin_id: Cabin.second.id,
-    observations: "Requesting early check-in.", 
-    is_paid: false, 
-    status: "confirmed", 
-    user_id: client_user2.id,
-    has_breakfast: false
-  },    
-  { 
-    start_date: "2024-10-01", 
-    end_date: "2024-10-05", 
-    num_guests: Cabin.first.maxCapacity - 1, 
-    cabin_id: Cabin.first.id,
-    observations: "Requesting early check-in.", 
-    is_paid: false, 
-    status: "booked", 
-    user_id: client_user1.id,
-    has_breakfast: true
-  },
-  { 
-    start_date: "2024-10-01", 
-    end_date: "2024-10-02", 
-    num_guests: Cabin.second.maxCapacity - 1, 
-    cabin_id: Cabin.second.id,
-    observations: "Requesting early check-in.", 
-    is_paid: true, 
-    status: "confirmed", 
-    user_id: client_user2.id,
-    has_breakfast: true
-  },    
-  { 
-    start_date: "2024-11-01", 
-    end_date: "2024-11-04", 
-    num_guests: Cabin.first.maxCapacity - 1, 
-    cabin_id: Cabin.first.id,
-    observations: "Requesting early check-in.", 
-    is_paid: false, 
-    status: "booked", 
-    user_id: client_user1.id,
-    has_breakfast: true
-  },
-  { 
-    start_date: "2024-11-01", 
-    end_date: "2024-11-03", 
-    num_guests: Cabin.second.maxCapacity - 1, 
-    cabin_id: Cabin.second.id,
-    observations: "Requesting early check-in.", 
-    is_paid: true, 
-    status: "confirmed", 
-    user_id: client_user2.id,
-    has_breakfast: true
-  }
+  { start_date: "2024-08-01", end_date: "2024-08-06", num_guests: Cabin.first.maxCapacity - 1, cabin_id: Cabin.first.id, observations: "Requesting early check-in.", is_paid: true, status: "checkedout", user_id: clientUsers.first.id, has_breakfast: true },
+  { start_date: "2024-08-07", end_date: "2024-08-10", num_guests: Cabin.first.maxCapacity - 1, cabin_id: Cabin.first.id, observations: "Requesting early check-in.", is_paid: true, status: "checkedout", user_id: clientUsers.first.id,has_breakfast: false },
+  { start_date: "2024-08-01", end_date: "2024-08-06", num_guests: Cabin.second.maxCapacity - 1, cabin_id: Cabin.second.id, observations: "Requesting early check-in.", is_paid: false, status: "booked", user_id: clientUsers.second.id, has_breakfast: true },
+  { start_date: "2024-08-07", end_date: "2024-08-10", num_guests: Cabin.second.maxCapacity - 1, cabin_id: Cabin.second.id, observations: "Requesting early check-in.", is_paid: false, status: "confirmed", user_id: clientUsers.second.id, has_breakfast: false },    
+  { start_date: "2024-10-01", end_date: "2024-10-05", num_guests: Cabin.first.maxCapacity - 1, cabin_id: Cabin.first.id, observations: "Requesting early check-in.", is_paid: false, status: "booked", user_id: clientUsers.first.id, has_breakfast: true },
+  { start_date: "2024-10-01", end_date: "2024-10-02", num_guests: Cabin.second.maxCapacity - 1, cabin_id: Cabin.second.id, observations: "Requesting early check-in.", is_paid: true, status: "confirmed", user_id: clientUsers.second.id, has_breakfast: true },    
+  { start_date: "2024-11-01", end_date: "2024-11-04", num_guests: Cabin.first.maxCapacity - 1, cabin_id: Cabin.first.id, observations: "Requesting early check-in.", is_paid: false, status: "booked", user_id: clientUsers.first.id, has_breakfast: true},
+  { start_date: "2024-11-01", end_date: "2024-11-03", num_guests: Cabin.second.maxCapacity - 1, cabin_id: Cabin.second.id, observations: "Requesting early check-in.",  is_paid: true,  status: "confirmed", user_id: clientUsers.second.id, has_breakfast: true},
+  { start_date: "2025-05-10", end_date: "2025-05-15", num_guests: 2, cabin_id: Cabin.offset(0).first.id, observations: "Request for a king-sized bed.", is_paid: true, status: "booked", user_id: clientUsers.offset(3).first.id, has_breakfast: true },
+  { start_date: "2025-05-20", end_date: "2025-05-25", num_guests: 3, cabin_id: Cabin.offset(1).first.id, observations: "Extra towels needed.", is_paid: false, status: "confirmed", user_id: clientUsers.offset(4).first.id, has_breakfast: false },
+  { start_date: "2025-06-01", end_date: "2025-06-05", num_guests: 4, cabin_id: Cabin.offset(2).first.id, observations: "Honeymoon suite requested.", is_paid: true, status: "confirmed", user_id: clientUsers.offset(5).first.id, has_breakfast: true },
+  { start_date: "2025-06-10", end_date: "2025-06-15", num_guests: 1, cabin_id: Cabin.offset(3).first.id, observations: "Early morning check-out.", is_paid: true, status: "booked", user_id: clientUsers.offset(6).first.id, has_breakfast: false },
+  { start_date: "2025-06-18", end_date: "2025-06-23", num_guests: 6, cabin_id: Cabin.offset(4).first.id, observations: "Need parking space.", is_paid: false, status: "confirmed", user_id: clientUsers.offset(7).first.id, has_breakfast: true },
+  { start_date: "2025-06-25", end_date: "2025-06-30", num_guests: 7, cabin_id: Cabin.offset(5).first.id, observations: "Anniversary celebration.", is_paid: true, status: "confirmed", user_id: clientUsers.offset(8).first.id, has_breakfast: false },
+  { start_date: "2025-07-02", end_date: "2025-07-07", num_guests: 5, cabin_id: Cabin.offset(6).first.id, observations: "Late-night arrival.", is_paid: true, status: "booked", user_id: clientUsers.offset(9).first.id, has_breakfast: true },
+  { start_date: "2025-07-10", end_date: "2025-07-15", num_guests: 4, cabin_id: Cabin.offset(7).first.id, observations: "Prefer a room with a view.", is_paid: false, status: "confirmed", user_id: clientUsers.offset(10).first.id, has_breakfast: true },
+  { start_date: "2025-07-20", end_date: "2025-07-25", num_guests: 2, cabin_id: Cabin.offset(0).first.id, observations: "Allergic to shellfish, please note.", is_paid: true, status: "confirmed", user_id: clientUsers.offset(11).first.id, has_breakfast: false },
+  { start_date: "2025-07-28", end_date: "2025-08-02", num_guests: 8, cabin_id: Cabin.offset(1).first.id, observations: "Requesting crib for a baby.", is_paid: true, status: "booked", user_id: clientUsers.offset(12).first.id, has_breakfast: true },
+  { start_date: "2025-08-05", end_date: "2025-08-10", num_guests: 6, cabin_id: Cabin.offset(2).first.id, observations: "Require adjacent cabins.", is_paid: false, status: "confirmed", user_id: clientUsers.offset(13).first.id, has_breakfast: false },
+  { start_date: "2025-08-12", end_date: "2025-08-17", num_guests: 3, cabin_id: Cabin.offset(3).first.id, observations: "Celebrating a 50th birthday.", is_paid: true, status: "confirmed", user_id: clientUsers.offset(1).first.id, has_breakfast: true },
+  { start_date: "2025-08-20", end_date: "2025-08-25", num_guests: 1, cabin_id: Cabin.offset(4).first.id, observations: "Late check-out preferred.", is_paid: true, status: "booked", user_id: clientUsers.offset(3).first.id, has_breakfast: false },
+  { start_date: "2025-08-28", end_date: "2025-09-02", num_guests: 4, cabin_id: Cabin.offset(5).first.id, observations: "Gluten-free breakfast requested.", is_paid: false, status: "confirmed", user_id: clientUsers.offset(4).first.id, has_breakfast: true },
+  { start_date: "2025-09-05", end_date: "2025-09-10", num_guests: 5, cabin_id: Cabin.offset(6).first.id, observations: "Request for daily cleaning service.", is_paid: true, status: "booked", user_id: clientUsers.offset(5).first.id, has_breakfast: false },
+  { start_date: "2025-09-12", end_date: "2025-09-17", num_guests: 7, cabin_id: Cabin.offset(7).first.id, observations: "Celebrating an engagement.", is_paid: true, status: "booked", user_id: clientUsers.offset(6).first.id, has_breakfast: true },
+  { start_date: "2025-09-20", end_date: "2025-09-25", num_guests: 2, cabin_id: Cabin.offset(0).first.id, observations: "Allergy-friendly room requested.", is_paid: false, status: "confirmed", user_id: clientUsers.offset(7).first.id, has_breakfast: true },
+  { start_date: "2025-09-28", end_date: "2025-10-03", num_guests: 8, cabin_id: Cabin.offset(1).first.id, observations: "Need connecting cabins.", is_paid: true, status: "booked", user_id: clientUsers.offset(8).first.id, has_breakfast: false },
+  { start_date: "2025-10-05", end_date: "2025-10-10", num_guests: 3, cabin_id: Cabin.offset(2).first.id, observations: "Vegetarian meals only.", is_paid: true, status: "booked", user_id: clientUsers.offset(9).first.id, has_breakfast: true },
+  { start_date: "2025-10-12", end_date: "2025-10-17", num_guests: 1, cabin_id: Cabin.offset(3).first.id, observations: "Quiet room near the garden.", is_paid: false, status: "confirmed", user_id: clientUsers.offset(10).first.id, has_breakfast: false }
+
+  
 ]
 
 booking_details.each do |details|
