@@ -181,7 +181,7 @@ clients.each do |client|
 end
 
 8.times do |i|
-  max_capacity = Faker::Number.between(from: 3, to: 12)
+  max_capacity = Faker::Number.between(from: 3, to: 8)
 
   # Calculate price based on capacity with a range from 100 to 3000
   min_price = 100
