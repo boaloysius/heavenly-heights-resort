@@ -116,15 +116,6 @@
                 <span>/day</span>
               </p>
 
-              <p v-if="has_breakfast" class="flex items-baseline">
-                <span class="flex gap-2 items-baseline">
-                  <span className="text-2xl"
-                    >& Breakfast ${{ booking_contants.BREAKFAST_PRICE }}</span
-                  >
-                </span>
-
-                <span>/day</span>
-              </p>
               <div class="flex items-baseline">
                 <p v-if="numDays" className="bg-accent-600 px-3 py-2 text-2xl">
                   <span>&times;</span> <span>{{ numDays }}</span>
