@@ -2,6 +2,7 @@
   <li class="flex border border-primary-800 rounded-md overflow-hidden">
     <div class="relative flex h-32">
       <CloudinaryImage
+        :key="profile.imagePublicId"
         :publicId="profile.imagePublicId"
         :attrs="{
           class: 'border-r border-primary-800 object-cover w-full h-full',
