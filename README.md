@@ -4,14 +4,17 @@ This project is a luxury hotel management system built with a Rails API backend 
 
 ## Table of Contents
 
+- [Demo](#demo)
 - [Prerequisites](#prerequisites)
 - [Installation](#installation)
 - [Backend Setup](#backend-setup)
 - [Frontend Setup](#frontend-setup)
 - [Running the Application](#running-the-application)
-- [Project Structure](#project-structure)
-- [Contributing](#contributing)
-- [License](#license)
+- [Courtesy](#courtesy)
+
+# Demo
+
+[![Watch the video](https://img.youtube.com/vi/oyXrhzy9Wz4/1.jpg)](https://www.youtube.com/watch?v=oyXrhzy9Wz4)
 
 ## Prerequisites
 
@@ -78,3 +81,9 @@ foreman start
 ```sh
 bundle exec rspec spec/requests
 ```
+
+## Courtesy
+
+- **Website Theme**: [The Ultimate React Course 2024: React, Next.js, Redux & More](https://www.udemy.com/course/the-ultimate-react-course)
+- **Image**: [Freepik.com](https://www.freepik.com)
+  - **Hero Image**: [Photorealistic House with Wooden Architecture](https://www.freepik.com/free-ai-image/photorealistic-house-with-wooden-architecture-timber-structure_152579043.htm#query=desktop%20themes%20log%20cabin&position=1&from_view=keyword&track=ais_hybrid&uuid=9c26dd03-1ee5-4414-8842-db5295e3f8a6)
