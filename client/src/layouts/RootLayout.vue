@@ -8,12 +8,12 @@
         <router-view />
       </div>
     </div>
-    <!-- <div
+    <div
       class="fixed bottom-0 z-10 p-2 w-full bg-accent-600 flex justify-center"
     >
       The website API is hosted on Render's free version, which may cause up to
       a 50-second delay during the initial load.
-    </div> -->
+    </div>
   </div>
 </template>
 
