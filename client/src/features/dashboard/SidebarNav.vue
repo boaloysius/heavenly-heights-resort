@@ -31,7 +31,7 @@ const sidebarNavItems = [
 </script>
 
 <template>
-  <nav class="border-r border-primary-900">
+  <nav class="lg:border-r border-primary-900">
     <ul class="flex flex-col gap-2 h-full text-lg">
       <li>
         <RouterLink
