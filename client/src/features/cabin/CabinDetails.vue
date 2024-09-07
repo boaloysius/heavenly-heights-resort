@@ -1,8 +1,8 @@
 <template>
   <div
-    class="grid grid-cols-[3fr_4fr] gap-20 border border-primary-800 py-3 px-10 mb-24"
+    class="grid md:grid-cols-[3fr_4fr] gap-20 border border-primary-800 py-3 px-10 mb-24"
   >
-    <div class="relative scale-[1.15] -translate-x-3">
+    <div class="relative scale-[1.15] md:-translate-x-3">
       <CloudinaryImage
         :publicId="imagePublicId"
         :attrs="{
@@ -16,7 +16,7 @@
 
     <div>
       <h3
-        class="text-accent-100 font-black text-7xl mb-5 translate-x-[-254px] bg-primary-950 p-6 pb-1 w-[150%]"
+        class="text-accent-100 font-black text-7xl mb-5 md:translate-x-[-254px] bg-primary-950 p-6 pb-1 w-[150%]"
       >
         Cabin {{ name }}
       </h3>
