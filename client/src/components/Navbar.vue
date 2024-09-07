@@ -1,6 +1,6 @@
 <template>
   <nav class="z-10 text-xl">
-    <ul class="flex gap-4 items-center">
+    <ul class="flex md:flex-row flex-wrap md:gap-4 items-center">
       <li>
         <RouterLink to="/about" :class="linkClass('/about')">
           About
@@ -16,7 +16,7 @@
           Login
         </RouterLink>
       </li>
-      <li v-if="!isAuthenticated">
+      <li v-if="!isAuthenticated" class="hidden md:block">
         <RouterLink to="/register" :class="linkClass('/register')">
           Register
         </RouterLink>

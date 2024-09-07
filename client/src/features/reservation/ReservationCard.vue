@@ -1,5 +1,7 @@
 <template>
-  <li class="flex border border-primary-800 rounded-md overflow-hidden">
+  <li
+    class="flex flex-col lg:flex-row border border-primary-800 rounded-md overflow-hidden"
+  >
     <div class="relative flex-1 h-32">
       <CloudinaryImage
         :publicId="cabin.imagePublicId"
@@ -97,7 +99,9 @@
       </div>
     </div>
 
-    <div class="flex flex-col border-l border-primary-800 w-[100px]">
+    <div
+      class="p-4 lg:p-0 flex flex-row lg:flex-col border-l border-primary-800 w-[100px]"
+    >
       <EditReservation v-if="!isPastReservation" :reservation="reservation" />
       <DeleteReservation v-if="!isPastReservation" :reservation="reservation" />
     </div>

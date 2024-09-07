@@ -5,7 +5,7 @@
       <ToggleGroup
         v-model="selectedFilter"
         type="single"
-        class="border border-none gap-2 items-end justify-end"
+        class="hidden lg:flex border border-none gap-2 items-end justify-end"
       >
         <ToggleGroupItem
           v-for="filter of filters"
@@ -16,7 +16,7 @@
         </ToggleGroupItem>
       </ToggleGroup>
     </div>
-    <div class="grid sm:grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 xl:gap-14">
+    <div class="grid sm:grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 xl:gap-14">
       <CabinCard v-for="cabin of filteredCabins" :cabin="cabin" :key="cabin" />
     </div>
   </div>

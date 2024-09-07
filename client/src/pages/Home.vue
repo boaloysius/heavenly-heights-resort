@@ -2,7 +2,7 @@
   <main class="mt-48">
     <div class="relative z-10 flex flex-col justify-center items-center">
       <h1
-        class="text-8xl text-primary-50 bg-primary-900 bg-opacity-30 mb-10 tracking-tight font-normal p-4"
+        class="text-5xl md:text-8xl text-primary-50 bg-primary-900 bg-opacity-30 mb-10 tracking-tight font-normal p-4"
       >
         Heavenly heights
       </h1>

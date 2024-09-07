@@ -1,5 +1,7 @@
 <template>
-  <li class="flex border border-primary-800 rounded-md overflow-hidden">
+  <li
+    class="flex flex-col lg:flex-row border border-primary-800 rounded-md overflow-hidden"
+  >
     <div class="relative flex h-32">
       <CloudinaryImage
         :key="profile.imagePublicId"
@@ -43,11 +45,11 @@
         {{ profile.email }}
       </p>
 
-      <div class="flex gap-5 mt-auto items-start">
+      <div class="flex flex-col lg:flex-row gap-5 mt-auto items-start">
         <p v-if="profile.country" class="text-xl font-semibold text-accent-400">
           {{ profile.country }}
         </p>
-        <p class="text-primary-300">&bull;</p>
+        <p class="text-primary-300 hidden lg:block">&bull;</p>
 
         <img
           v-if="profile.country"
@@ -56,7 +58,9 @@
           className="h-5 rounded-sm"
         />
 
-        <p v-if="profile.nationalID" class="text-primary-300">&bull;</p>
+        <p v-if="profile.nationalID" class="text-primary-300 hidden lg:block">
+          &bull;
+        </p>
         <p v-if="profile.nationalID" class="text-lg text-primary-300">
           {{ profile.nationalID }}
         </p>
@@ -68,7 +72,7 @@
       </div>
     </div>
     <div
-      class="flex border-l border-primary-800 w-[120px] justify-center items-center underline underline-offset-4"
+      class="p-4 lg:p-0 flex border-l border-primary-800 lg:w-[120px] justify-center items-center underline underline-offset-4"
     >
       <RouterLink
         v-if="!isAdminProfile"

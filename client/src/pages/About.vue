@@ -1,6 +1,6 @@
 <template>
   <div class="grid grid-cols-5 gap-x-24 gap-y-32 text-lg items-center">
-    <div class="col-span-3">
+    <div class="col-span-5 md:col-span-3">
       <h1 class="text-4xl mb-10 text-accent-400 font-medium">
         Welcome to The Heavenly Heights
       </h1>
@@ -28,7 +28,7 @@
       </div>
     </div>
 
-    <div class="col-span-2 relative aspect-square">
+    <div class="col-span-5 md:col-span-2 relative aspect-square">
       <CloudinaryImage
         publicId="heavenly-heights/core/common/about-1"
         :attrs="{
@@ -40,7 +40,7 @@
       />
     </div>
 
-    <div class="col-span-2 relative aspect-square">
+    <div class="col-span-5 md:col-span-2 relative aspect-square">
       <CloudinaryImage
         publicId="heavenly-heights/core/common/about-2"
         :attrs="{
@@ -52,7 +52,7 @@
       />
     </div>
 
-    <div class="col-span-3">
+    <div class="col-span-5 md:col-span-3">
       <h1 class="text-4xl mb-10 text-accent-400 font-medium">
         Managed by our family since 1962
       </h1>
